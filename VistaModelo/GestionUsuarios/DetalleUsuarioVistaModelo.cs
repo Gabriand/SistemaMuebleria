@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MuebleriaPIS.VistaModelo
+{
+    internal class DetalleUsuarioVistaModelo
+    {
+    }
+}
+// Manejar los datos específicos de un usuario seleccionado
