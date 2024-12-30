@@ -1,0 +1,17 @@
+﻿<Application x:Class="MuebleriaPIS.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MuebleriaPIS"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Recursos/Estilos.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Window">
+                <Setter Property="Icon" Value="/Recursos/Imagenes/logo.ico"/>
+            </Style>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>
