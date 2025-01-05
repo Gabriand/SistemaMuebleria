@@ -1,4 +1,7 @@
 ﻿using MuebleriaPIS.Vistas;
+using MuebleriaPIS.Vistas.Catalogo;
+using MuebleriaPIS.Vistas.Compartido;
+using MuebleriaPIS.Vistas.ListaDeseo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +24,8 @@ namespace MuebleriaPIS
         public MainWindow()
         {
             InitializeComponent();
-            Ingreso ingreso = new Ingreso();
-            Window window = new Window
-            {
-                Content = ingreso,
-                Width = 800,
-                Height = 600
-            };
-            window.Closed += (s, e) => this.Close(); // Cierra la ventana principal cuando se cierra la ventana de ingreso
-            window.ShowDialog();
+            MainFrame.Navigate(new CatalogoProductos());
+
         }
     }
 }

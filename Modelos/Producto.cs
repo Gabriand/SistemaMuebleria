@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MuebleriaPIS.Modelos
 {
-    internal class Producto
+    public class Producto
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -14,5 +14,7 @@ namespace MuebleriaPIS.Modelos
         public decimal Precio { get; set; }
         public int Stock { get; set; }
         public int CategoriaId { get; set; }
+        public string Imagen { get; set; }
+        public string Detalle { get; set; }
     }
 }

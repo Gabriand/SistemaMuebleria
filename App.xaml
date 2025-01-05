@@ -11,7 +11,7 @@
             <Style TargetType="Window">
                 <Setter Property="Icon" Value="/Recursos/Imagenes/logo.ico"/>
             </Style>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
-        
     </Application.Resources>
 </Application>

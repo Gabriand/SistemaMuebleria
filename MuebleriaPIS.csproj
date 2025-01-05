@@ -58,6 +58,7 @@
     <Compile Include="Servicios\ServicioAutenticacion.cs" />
     <Compile Include="Servicios\ServicioProductos.cs" />
     <Compile Include="Utilidades\Formateador.cs" />
+    <Compile Include="Utilidades\RelayCommand.cs" />
     <Compile Include="Utilidades\Validador.cs" />
     <Compile Include="VistaModelo\Inicio\AdminVistaModelo.cs" />
     <Compile Include="VistaModelo\Compartido\BarraNavegacionVistaModelo.cs" />
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="Vistas\Ingreso\InicioTrabajador.xaml.cs">
       <DependentUpon>InicioTrabajador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Ingreso\RecuperarContrasena.xaml.cs">
+      <DependentUpon>RecuperarContrasena.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Ingreso\RegistroCliente.xaml.cs">
+      <DependentUpon>RegistroCliente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Inventario\GestionInventario.xaml.cs">
       <DependentUpon>GestionInventario.xaml</DependentUpon>
@@ -171,6 +178,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\Ingreso\RecuperarContrasena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\Ingreso\RegistroCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\Inventario\GestionInventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +237,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\BarraNavegacion\Usuario.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\BarraNavegacion\Corazon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\MesaComedor\mesa.jpg" />
+    <Resource Include="Recursos\Imagenes\Sillas\silla.jpg" />
+    <Resource Include="Recursos\Imagenes\Sofá\sofa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Sofá\sofa1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\BarraNavegacion\Regreso.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
