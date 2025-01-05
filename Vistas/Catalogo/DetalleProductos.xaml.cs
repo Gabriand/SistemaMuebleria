@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MuebleriaPIS.VistaModelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,17 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.Catalogo
 {
-    /// <summary>
-    /// Lógica de interacción para DetalleProductos.xaml
-    /// </summary>
     public partial class DetalleProductos : Page
     {
         public DetalleProductos()
         {
             InitializeComponent();
+        }
+
+        public DetalleProductos(DetalleProductosVistaModelo viewModel)
+        {
+            InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

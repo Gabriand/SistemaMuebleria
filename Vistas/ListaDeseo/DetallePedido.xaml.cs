@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.ListaDeseo
 {
-    /// <summary>
-    /// Lógica de interacción para DetallePedido.xaml
-    /// </summary>
     public partial class DetallePedido : Page
     {
         public DetallePedido()

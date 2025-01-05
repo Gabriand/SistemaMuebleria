@@ -1,13 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using MuebleriaPIS.Modelos;
 
 namespace MuebleriaPIS.VistaModelo
 {
-    internal class DetalleProductosVistaModelo
+    public class DetalleProductosVistaModelo : INotifyPropertyChanged
     {
+        private Producto _producto;
+
+        public Producto Producto
+        {
+            get => _producto;
+            set
+            {
+                _producto = value;
+                OnPropertyChanged(nameof(Producto));
+            }
+        }
+
+        public DetalleProductosVistaModelo(Producto producto)
+        {
+            Producto = producto;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
-//Gestionar la información del detalle de los productos

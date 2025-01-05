@@ -1,6 +1,4 @@
-﻿using MuebleriaPIS.VistaModelo;
-using MuebleriaPIS.Vistas.Compartido;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,15 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MuebleriaPIS.Vistas.Catalogo
+namespace MuebleriaPIS.Vistas.Ingreso
 {
-    public partial class CatalogoProductos : Page
+    /// <summary>
+    /// Lógica de interacción para RecuperarContrasena.xaml
+    /// </summary>
+    public partial class RecuperarContrasena : Page
     {
-        public CatalogoProductos()
+        public RecuperarContrasena()
         {
             InitializeComponent();
-            this.DataContext = new CatalogoProductosVistaModelo();
-            barraNavegacion.VentanasGrid.Visibility = Visibility.Visible;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new IngresoPage());
         }
     }
 }

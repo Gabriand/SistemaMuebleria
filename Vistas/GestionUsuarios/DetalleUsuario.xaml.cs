@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.GestionUsuarios
 {
-    /// <summary>
-    /// Lógica de interacción para DetalleUsuario.xaml
-    /// </summary>
     public partial class DetalleUsuario : Page
     {
         public DetalleUsuario()

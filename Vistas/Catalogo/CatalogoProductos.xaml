@@ -4,11 +4,85 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Catalogo"
+      xmlns:compartido="clr-namespace:MuebleriaPIS.Vistas.Compartido"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CatalogoProductos">
+      Background="{StaticResource BackgroundBrushSecond}">
 
     <Grid>
+        <!--barra de navegación-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <compartido:BarraNavegacion Grid.Row="0" x:Name="barraNavegacion" MostrarBotonRegreso="False"/>
         
+        <!-- Contenido del catálogo de productos -->
+        <TextBlock Text="Productos"
+                   Grid.Row="1"
+                   FontSize="36" 
+                   FontFamily="Gadugi" 
+                   FontWeight="SemiBold" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Margin="0, 0, 0, 5"/>
+        
+        <Border Grid.Row="2">
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
+            </Border.Effect>
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Productos}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray" Margin="20" CornerRadius="0">
+                                <StackPanel Width="250" Background="{StaticResource BackgroundBrushSecond}">
+                                    <Image Source="{Binding Imagen}" 
+                                           Height="250" 
+                                           Stretch="UniformToFill"/>
+                                    <TextBlock Text="{Binding Nombre}" 
+                                               FontSize="20"
+                                               FontFamily="Gadugi"
+                                               FontWeight="Regular" 
+                                               Margin="15, 20, 0, 20" 
+                                               HorizontalAlignment="Left"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Precio, StringFormat='C'}"
+                                                   FontFamily="Gadugi"
+                                                   FontWeight="SemiBold"
+                                                   Grid.Column="0"
+                                                   FontSize="16" 
+                                                   Margin="15, 0, 0, 15" 
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"/>
+                                        <Button Content="  Añadir a lista  "
+                                                FontFamily="Gadugi"
+                                                FontWeight="SemiBold"
+                                                Grid.Column="1"
+                                                Style="{StaticResource InverseButtonStyle}"
+                                                Margin="0,0,25,15" 
+                                                Command="{Binding AñadirAListaCommand}" 
+                                                CommandParameter="{Binding}" 
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Page>

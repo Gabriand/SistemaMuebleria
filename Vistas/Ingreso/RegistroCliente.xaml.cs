@@ -1,5 +1,6 @@
 ﻿using MuebleriaPIS.VistaModelo;
 using MuebleriaPIS.Vistas.Compartido;
+using MuebleriaPIS.Vistas.Ingreso;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MuebleriaPIS.Vistas.Catalogo
+namespace MuebleriaPIS.Vistas.Ingreso
 {
-    public partial class CatalogoProductos : Page
+    public partial class RegistroCliente : Page
     {
-        public CatalogoProductos()
+        public RegistroCliente()
         {
             InitializeComponent();
-            this.DataContext = new CatalogoProductosVistaModelo();
-            barraNavegacion.VentanasGrid.Visibility = Visibility.Visible;
+        }
+
+        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new IngresoPage());
         }
     }
 }

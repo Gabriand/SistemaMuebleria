@@ -13,23 +13,36 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuebleriaPIS;
+using MuebleriaPIS.VistaModelo;
+using MuebleriaPIS.Vistas.Compartido;
+using MuebleriaPIS.Vistas.Ingreso;
+using MuebleriaPIS.Vistas.Catalogo;
 
 namespace MuebleriaPIS.Vistas
 {
-    public partial class Ingreso : Page
+    public partial class IngresoPage : Page
     {
+        private BarraNavegacionVistaModelo _viewModel;
+
         private List<Usuario> Usuarios;
 
-        public Ingreso()
+        public IngresoPage()
         {
             InitializeComponent();
-            // Simulación de usuarios
             Usuarios = new List<Usuario>
             {
                 new Usuario { Id = 1, Nombre = "Admin", Rol = "Administrador", Correo = "admin@muebleria.com", Contrasena = "1234" },
                 new Usuario { Id = 2, Nombre = "Trabajador", Rol = "Trabajador", Correo = "trabajador@muebleria.com", Contrasena = "1234" },
                 new Usuario { Id = 3, Nombre = "Cliente", Rol = "Cliente", Correo = "cliente@muebleria.com", Contrasena = "1234" }
             };
+
+            //Barra de Navegacion
+            _viewModel = new BarraNavegacionVistaModelo
+            {
+                MostrarControlesUsuario = false,  // Oculta los controles de usuario en la página de ingreso
+            };
+            barraNavegacion.DataContext = _viewModel;
         }
 
         private void IngresoBtn_Click(object sender, RoutedEventArgs e)
@@ -42,12 +55,22 @@ namespace MuebleriaPIS.Vistas
             if (usuario != null)
             {
                 MessageBox.Show($"Bienvenido, {usuario.Nombre}");
-                // Aquí redirigirías a la ventana correspondiente según el Rol
+                this.NavigationService.Navigate(new CatalogoProductos());
             }
             else
             {
                 MessageBox.Show("Credenciales incorrectas.");
             }
+        }
+
+        private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistroCliente());
+        }
+
+        private void OlvidasteContrasena_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new RecuperarContrasena());
         }
     }
 }
