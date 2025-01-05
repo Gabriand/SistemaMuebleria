@@ -13,25 +13,29 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Barra de navegación -->
-        <compartido:BarraNavegacion Grid.Row="0" x:Name="barraNavegacion"/>
+        <compartido:BarraNavegacion Grid.Row="0" x:Name="barraNavegacion" MostrarBotonBusqueda="False"/>
 
-        <!-- Lista de deseos -->
-        <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding ListaDeseos}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="10">
-                            <Image Source="{Binding Imagen}" Height="100" Width="100"/>
-                            <TextBlock Text="{Binding Nombre}" FontSize="20" Margin="10,0"/>
-                            <TextBlock Text="{Binding Precio, StringFormat='C'}" FontSize="18" Margin="10,0"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <TextBlock Text="Mi lista de deseo"
+                   Grid.Row="1"
+                   FontSize="36" 
+                   FontFamily="Gadugi" 
+                   FontWeight="SemiBold" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Margin="5"/>
+
+        <ScrollViewer Grid.Row="2">
+            <DataGrid x:Name="dataGridListaDeseos"
+                      Margin="15"
+                      BorderBrush="Gray"
+                      AutoGenerateColumns="True"
+                      ItemsSource="{Binding ListaDeseos}">
+            </DataGrid>
         </ScrollViewer>
     </Grid>
 </Page>

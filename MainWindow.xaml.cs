@@ -24,8 +24,8 @@ namespace MuebleriaPIS
         public MainWindow()
         {
             InitializeComponent();
+            //MainFrame.Navigate(new IngresoPage());
             MainFrame.Navigate(new CatalogoProductos());
-
         }
     }
 }

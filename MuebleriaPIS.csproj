@@ -255,5 +255,11 @@
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\BarraNavegacion\Regreso.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\BarraNavegacion\Busqueda.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\ListaDeseo\Eliminar.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,11 +22,5 @@ namespace MuebleriaPIS.Vistas.Catalogo
         {
             InitializeComponent();
         }
-
-        public DetalleProductos(DetalleProductosVistaModelo viewModel)
-        {
-            InitializeComponent();
-            DataContext = viewModel;
-        }
     }
 }

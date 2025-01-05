@@ -31,6 +31,15 @@ namespace MuebleriaPIS.Vistas.Compartido
             set { SetValue(MostrarBotonRegresoProperty, value); }
         }
 
+        public static readonly DependencyProperty MostrarBotonBusquedaProperty =
+            DependencyProperty.Register("MostrarBotonBusqueda", typeof(bool), typeof(BarraNavegacion), new PropertyMetadata(true));
+
+        public bool MostrarBotonBusqueda
+        {
+            get { return (bool)GetValue(MostrarBotonBusquedaProperty); }
+            set { SetValue(MostrarBotonBusquedaProperty, value); }
+        }
+
         public BarraNavegacion()
         {
             InitializeComponent();
@@ -84,6 +93,11 @@ namespace MuebleriaPIS.Vistas.Compartido
             {
                 navigationService.Navigate(catalogoProductosPage);
             }
+        }
+
+        private void Busqueda_Click(object sender, MouseButtonEventArgs e)
+        {
+            // Lanzar el evento BusquedaClicked
         }
     }
 }

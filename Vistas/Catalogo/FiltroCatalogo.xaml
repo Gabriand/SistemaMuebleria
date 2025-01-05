@@ -6,15 +6,9 @@
       xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Catalogo"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="FiltroCatalogo" Background="{StaticResource BackgroundBrushSecond}">
-
-    <StackPanel Orientation="Horizontal" Margin="20">
-        <TextBox x:Name="txtBuscar"
-             Width="300"
-             Height="40"
-             Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Content="Buscar"
-            Margin="10,0,0,0"
-            Command="{Binding BuscarCommand}"/>
-    </StackPanel>
+      Background="{StaticResource BackgroundBrushSecond}">
+    
+    <Grid>
+        
+    </Grid>
 </Page>

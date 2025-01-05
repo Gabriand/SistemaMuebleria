@@ -1,19 +1,5 @@
-﻿using MuebleriaPIS.VistaModelo;
-using MuebleriaPIS.Vistas.Compartido;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using MuebleriaPIS.VistaModelo;
 
 namespace MuebleriaPIS.Vistas.Catalogo
 {
@@ -22,8 +8,10 @@ namespace MuebleriaPIS.Vistas.Catalogo
         public CatalogoProductos()
         {
             InitializeComponent();
-            this.DataContext = new CatalogoProductosVistaModelo();
-            barraNavegacion.VentanasGrid.Visibility = Visibility.Visible;
+            var viewModel = new CatalogoProductosVistaModelo();
+            this.DataContext = viewModel;
+            barraNavegacion.VentanasGrid.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }
+

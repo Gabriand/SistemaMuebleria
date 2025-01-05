@@ -32,6 +32,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" 
                             Width="25" 
@@ -50,13 +51,30 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                    <Image Grid.Column="1" 
+                    <Image Grid.Column="1"
+                           Width="25"
+                           Source="/Recursos/Imagenes/BarraNavegacion/Busqueda.ico"
+                           MouseEnter="Image_MouseEnter"
+                           MouseLeave="Image_MouseLeave"
+                           MouseLeftButtonUp="Busqueda_Click">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding MostrarBotonBusqueda, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <Image Grid.Column="2" 
                             Width="25" 
                             Source="/Recursos/Imagenes/BarraNavegacion/Corazon.ico"
                             MouseEnter="Image_MouseEnter"
                             MouseLeave="Image_MouseLeave"
                             MouseLeftButtonUp="ListaDeseos_Click"/>
-                    <Image Grid.Column="2" 
+                    <Image Grid.Column="3" 
                             Width="25" 
                             Source="/Recursos/Imagenes/BarraNavegacion/Usuario.ico"
                             MouseEnter="Image_MouseEnter"

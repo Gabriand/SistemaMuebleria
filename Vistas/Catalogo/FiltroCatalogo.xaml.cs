@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.Catalogo
 {
-    /// <summary>
-    /// Lógica de interacción para FiltroCatalogo.xaml
-    /// </summary>
     public partial class FiltroCatalogo : Page
     {
         public FiltroCatalogo()

@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.ListaDeseo
 {
-    /// <summary>
-    /// Lógica de interacción para Pedidos.xaml
-    /// </summary>
     public partial class Pedidos : Page
     {
         public Pedidos()

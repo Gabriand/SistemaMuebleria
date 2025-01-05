@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas
 {
-    /// <summary>
-    /// Lógica de interacción para InicioAdmin.xaml
-    /// </summary>
     public partial class InicioAdmin : Page
     {
         public InicioAdmin()

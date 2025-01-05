@@ -16,8 +16,9 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <compartido:BarraNavegacion Grid.Row="0" x:Name="barraNavegacion" MostrarBotonRegreso="False"/>
-        
+
         <!-- Contenido del catálogo de productos -->
         <TextBlock Text="Productos"
                    Grid.Row="1"
@@ -26,8 +27,9 @@
                    FontWeight="SemiBold" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"
-                   Margin="0, 0, 0, 5"/>
-        
+                   Margin="5"/>
+
+        <!--Catalogo-->
         <Border Grid.Row="2">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
@@ -42,7 +44,7 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Gray" Margin="20" CornerRadius="0">
+                            <Border BorderBrush="Gray" Margin="22" CornerRadius="0">
                                 <StackPanel Width="250" Background="{StaticResource BackgroundBrushSecond}">
                                     <Image Source="{Binding Imagen}" 
                                            Height="250" 

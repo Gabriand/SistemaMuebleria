@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas
 {
-    /// <summary>
-    /// Lógica de interacción para InicioTrabajador.xaml
-    /// </summary>
     public partial class InicioTrabajador : Page
     {
         public InicioTrabajador()
