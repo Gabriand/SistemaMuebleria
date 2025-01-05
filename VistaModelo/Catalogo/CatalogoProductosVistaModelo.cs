@@ -17,8 +17,6 @@ using System.Windows.Navigation;
 using System.Windows;
 using System.Windows.Controls;
 
-
-
 namespace MuebleriaPIS.VistaModelo
 {
     public class CatalogoProductosVistaModelo : INotifyPropertyChanged
@@ -36,34 +34,6 @@ namespace MuebleriaPIS.VistaModelo
                 //Aqui se agregan mas ventanitas de productos
                 new Producto { Nombre = "Sofá bonito", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa1.jpg" },
             };
-            NavegarADetalleCommand = new RelayCommand<Producto>(NavegarADetalle);
-        }
-
-        private void NavegarADetalle(Producto producto)
-        {
-            var detalleVM = new DetalleProductosVistaModelo(producto);
-            var detalleProductos = new DetalleProductos { DataContext = detalleVM };
-            NavigationService.GetNavigationService(Application.Current.MainWindow)?.Navigate(detalleProductos);
-        }
-
-        public void FiltrarProductos(string textoBusqueda)
-        {
-            var productosFiltrados = ObtenerProductos()
-                .Where(p => p.Nombre.IndexOf(textoBusqueda, StringComparison.OrdinalIgnoreCase) >= 0);
-            Productos = new ObservableCollection<Producto>(productosFiltrados);
-            OnPropertyChanged(nameof(Productos));
-        }
-
-        private IEnumerable<Producto> ObtenerProductos()
-        {
-            // Implementa la lógica para obtener la lista de productos
-            return new List<Producto>
-            {
-                new Producto { Nombre = "Sofá", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg" },
-                new Producto { Nombre = "Mesa de comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg" },
-                new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg" },
-                new Producto { Nombre = "Sofá bonito", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa1.jpg" },
-            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -74,3 +44,4 @@ namespace MuebleriaPIS.VistaModelo
         }
     }
 }
+
