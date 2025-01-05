@@ -48,6 +48,38 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Estilo Inverso para Botones -->
+    <Style x:Key="InverseButtonStyle" TargetType="Button">
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Padding" Value="15,5"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SecondaryBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- Estilo para TextBox -->
     <Style x:Key="ModernTextBox" TargetType="TextBox">
         <Setter Property="Height" Value="35"/>
@@ -132,14 +164,58 @@
         <Setter Property="BorderBrush" Value="#e0e0e0"/>
     </Style>
 
-    <!-- Estilo para ComboBox -->
     <Style x:Key="ModernComboBox" TargetType="ComboBox">
-        <Setter Property="Height" Value="35"/>
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="#e0e0e0"/>
-        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <!-- Botón desplegable -->
+                        <ToggleButton 
+                        Name="ToggleButton"
+                        Focusable="False"
+                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                        ClickMode="Press"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        HorizontalAlignment="Right">
+                            <Path 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M 0 0 L 4 4 L 8 0 Z"
+                            Fill="Black" />
+                        </ToggleButton>
+
+                        <!-- Contenido seleccionado -->
+                        <ContentPresenter 
+                        Name="ContentSite"
+                        Content="{TemplateBinding SelectionBoxItem}"
+                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                        Margin="5,0,25,0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left" />
+
+                        <!-- Lista desplegable -->
+                        <Popup 
+                        Name="Popup"
+                        Placement="Bottom"
+                        IsOpen="{TemplateBinding IsDropDownOpen}"
+                        AllowsTransparency="True"
+                        Focusable="False"
+                        PopupAnimation="Slide">
+                            <Border 
+                            BorderThickness="1"
+                            Background="White">
+                                <ScrollViewer>
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
+
 
     <!-- Estilo para Label -->
     <Style x:Key="ModernLabel" TargetType="Label">

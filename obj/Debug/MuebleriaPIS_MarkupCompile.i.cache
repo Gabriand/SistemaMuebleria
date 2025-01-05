@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\App.xaml
-16-1512863219
+1894575155
 
-411454573089
+441190698923
 13-38814620
-MainWindow.xaml;Recursos\Estilos.xaml;Vistas\Catalogo\CatalogoProductos.xaml;Vistas\Catalogo\DetalleProductos.xaml;Vistas\Catalogo\FiltroCatalogo.xaml;Vistas\Compartido\BarraNavegacion.xaml;Vistas\GestionUsuarios\DetalleUsuario.xaml;Vistas\GestionUsuarios\GestionUsuarios.xaml;Vistas\Ingreso\Ingreso.xaml;Vistas\Ingreso\InicioAdmin.xaml;Vistas\Ingreso\InicioCliente.xaml;Vistas\Ingreso\InicioTrabajador.xaml;Vistas\Inventario\GestionInventario.xaml;Vistas\ListaDeseo\DetallePedido.xaml;Vistas\ListaDeseo\Pedidos.xaml;Vistas\Reportes\ReporteInventario.xaml;
+MainWindow.xaml;Recursos\Estilos.xaml;Vistas\Catalogo\CatalogoProductos.xaml;Vistas\Catalogo\DetalleProductos.xaml;Vistas\Catalogo\FiltroCatalogo.xaml;Vistas\Compartido\BarraNavegacion.xaml;Vistas\GestionUsuarios\DetalleUsuario.xaml;Vistas\GestionUsuarios\GestionUsuarios.xaml;Vistas\Ingreso\Ingreso.xaml;Vistas\Ingreso\InicioAdmin.xaml;Vistas\Ingreso\InicioCliente.xaml;Vistas\Ingreso\InicioTrabajador.xaml;Vistas\Ingreso\RecuperarContrasena.xaml;Vistas\Ingreso\RegistroCliente.xaml;Vistas\Inventario\GestionInventario.xaml;Vistas\ListaDeseo\DetallePedido.xaml;Vistas\ListaDeseo\Pedidos.xaml;Vistas\Reportes\ReporteInventario.xaml;
 
-False
+True
 
