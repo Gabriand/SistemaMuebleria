@@ -16,5 +16,7 @@ namespace MuebleriaPIS.Modelos
         public int CategoriaId { get; set; }
         public string Imagen { get; set; }
         public string Detalle { get; set; }
+        public int Cantidad { get; set; }
+        public string EstadoInventario { get; set; }
     }
 }
