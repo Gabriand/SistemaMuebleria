@@ -66,6 +66,10 @@ namespace MuebleriaPIS.VistaModelo
                     break;
             }
         }
+
+        public Usuario ObtenerUsuarioAutenticado()
+        {
+            return EstadoAutenticacion.Instancia.UsuarioAutenticado;
+        }
     }
 }
-
