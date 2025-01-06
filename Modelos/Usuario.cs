@@ -12,6 +12,8 @@ namespace MuebleriaPIS.Modelos
         public string Nombre { get; set; }
         public string Rol { get; set; } //Puede ser Admin, Trabajador o Cliente
         public string Correo { get; set; }
+        public string Direccion { get; set; } //Puede ser null
+        public int? Telefono { get; set; } //Puede ser null
         public string Contrasena { get; set; }
     }
 }
