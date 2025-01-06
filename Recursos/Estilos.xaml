@@ -48,6 +48,36 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Estilo Destructivo para Botones -->
+    <Style x:Key="DestButtonStyle" TargetType="Button">
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Padding" Value="15,5"/>
+        <Setter Property="Background" Value="red"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Tomato" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- Estilo Inverso para Botones -->
     <Style x:Key="InverseButtonStyle" TargetType="Button">
         <Setter Property="Height" Value="35"/>
