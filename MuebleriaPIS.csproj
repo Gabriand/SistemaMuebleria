@@ -261,5 +261,11 @@
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\ListaDeseo\Eliminar.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Usuario\Perfil.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Usuario\Salir.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
