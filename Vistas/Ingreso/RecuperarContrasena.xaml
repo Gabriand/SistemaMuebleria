@@ -19,54 +19,32 @@
                         MaxWidth="800"
                         MinWidth="450">
                 <!--Titulo-->
-                <TextBlock Text="Recuperar Usuario" 
+                <TextBlock Text="Recuperar Usuario o Contraseña"
                            FontSize="30" 
                            FontFamily="Gadugi" 
                            FontWeight="SemiBold" 
-                           HorizontalAlignment="Center" 
-                           Margin="0,15,0,15"/>
+                           HorizontalAlignment="Center"
+                           Margin="10, 15, 10, 15"/>
                 <!--Correo de recuperacion-->
-                <TextBlock Text="Correo:" Margin="35,0,0,5" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
-                <TextBox x:Name="txtCorreo" 
-                         Height="36"
-                         FontSize="16" 
-                         FontFamily="Gadugi" 
-                         HorizontalAlignment="Stretch"
-                         BorderThickness="2"
-                         Background="{StaticResource BackgroundBrushSecond}"
-                         Style="{StaticResource ModernTextBox}"
-                         Margin="33,0,33,20"/>
-                <!--Botones-->
-                <Grid Margin="0,0,0,30">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="btnRecuperar" 
-                            Content="Recuperar" 
-                            FontSize="16" 
-                            Height="39"
-                            FontFamily="Gadugi" 
-                            HorizontalAlignment="Stretch"
-                            FontWeight="SemiBold"
-                            Margin="35,0,10,0"
-                            Style="{StaticResource BaseButtonStyle}"
-                            Grid.Column="0"
-                            Click="btnRecuperar_Click"/>
-
-                    <Button x:Name="btnCancelar"
-                            Content="Cancelar" 
+                <TextBlock Text="Para recuperar el usuario o la contraseña contactese al siguiente correo: admin@muebleria.com"
+                           TextWrapping="Wrap"
+                           Margin="35,0,0,15"
+                           FontSize="16" 
+                           FontFamily="Gadugi"
+                           Foreground="Gray"
+                           HorizontalAlignment="Center" Width="408" Height="47"/>
+                <!--Boton-->
+                <Button x:Name="Regresar"
+                            Content="Regresar" 
                             FontSize="16" 
                             Height="39"
                             FontFamily="Gadugi" 
                             HorizontalAlignment="Stretch" 
                             FontWeight="SemiBold"
-                            Margin="10,0,35,0"
+                            Margin="100,0,100,25"
                             Style="{StaticResource InverseButtonStyle}"
                             Grid.Column="1" 
-                            Click="btnCancelar_Click"/>
-                </Grid>
+                            Click="btnRegresar_Click"/>
             </StackPanel>
         </Border>
     </Grid>
