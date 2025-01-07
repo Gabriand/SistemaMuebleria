@@ -15,7 +15,7 @@
     <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
     <SolidColorBrush x:Key="BackgroundBrushPrimary" Color="{StaticResource BackgroundColorPrimary}"/>
     <SolidColorBrush x:Key="BackgroundBrushSecond" Color="{StaticResource BackgroundColorSecond}"/>
-    <SolidColorBrush x:Key="BackgroundBrushThrid" Color="{StaticResource BackgroundColorThird}"/>
+    <SolidColorBrush x:Key="BackgroundBrushThird" Color="{StaticResource BackgroundColorThird}"/>
     <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
 
     <!-- Estilo Base para Botones -->
@@ -172,7 +172,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- Estilo para DataGrid -->
     <Style x:Key="ModernDataGrid" TargetType="DataGrid">
         <Setter Property="Background" Value="White"/>
