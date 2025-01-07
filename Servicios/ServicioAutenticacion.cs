@@ -13,23 +13,34 @@ namespace MuebleriaPIS.Servicios
         {
             Usuarios = new List<Usuario>
             {
-                new Usuario { Id = 1, Nombre = "Admin", Rol = "Admin", Correo = "admin@muebleria.com", Contrasena = "1234" },
-                new Usuario { Id = 2, Nombre = "Trabajador", Rol = "Trabajador", Correo = "trabajador@muebleria.com", Contrasena = "1234" },
-                new Usuario { Id = 3, Nombre = "Cliente", Rol = "Cliente", Correo = "cliente@muebleria.com", Contrasena = "1234" },
+                new Usuario { Id = 1, Nombre = "Admin", Apellido = "Admin", NomUsuario = "admin", Rol = "Admin", Correo = "admin@muebleria.com", Contrasena = "1234" },
+                new Usuario { Id = 2, Nombre = "Trabajador", Apellido = "Trabajador", NomUsuario = "trabajador", Rol = "Trabajador", Correo = "trabajador@muebleria.com", Contrasena = "1234" },
+                new Usuario { Id = 3, Nombre = "Cliente", Apellido = "Cliente", NomUsuario = "cliente", Rol = "Cliente", Correo = "cliente@muebleria.com", Contrasena = "1234" },
                 //Usuario de prueba
-                new Usuario { Id = 4, Nombre = "JuanPerez", Rol = "Cliente", Correo = "usuario1@muebleria.com", Contrasena = "abcd", Direccion = "Calle Falsa 123", Telefono = 123456789 },
-                new Usuario {Id = 5, Nombre = "Nataliap", Rol = "Cliente", Correo = "Usuario2@muebleria.com", Contrasena = "abcd", Direccion = "Calle Falsa 456", Telefono = 123456789 }
+                new Usuario { Id = 4, Nombre = "Juan", Apellido = "Perez", NomUsuario = "juanperez", Rol = "Cliente", Correo = "usuario1@muebleria.com", Contrasena = "abcd", Direccion = "Calle Falsa 123", Telefono = 123456789 },
+                new Usuario { Id = 5, Nombre = "Natalia", Apellido = "Vera", NomUsuario = "nataliav", Rol = "Cliente", Correo = "usuario2@muebleria.com", Contrasena = "abcd", Direccion = "Calle Falsa 456", Telefono = 123456789 }
             };
         }
 
         public Usuario Autenticar(string identificador, string contrasena)
         {
-            var usuario = Usuarios.FirstOrDefault(u => (u.Correo == identificador || u.Nombre == identificador) && u.Contrasena == contrasena);
+            var usuario = Usuarios.FirstOrDefault(u => (u.Correo == identificador || u.NomUsuario == identificador) && u.Contrasena == contrasena);
             if (usuario != null)
             {
                 EstadoAutenticacion.Instancia.UsuarioAutenticado = usuario;
             }
             return usuario;
+        }
+
+        public bool ExisteUsuario(string usuario, string correo)
+        {
+            return Usuarios.Any(u => u.NomUsuario == usuario || u.Correo == correo);
+        }
+
+        public void RegistrarUsuario(Usuario nuevoUsuario)
+        {
+            // Aquí puedes agregar la lógica para guardar en la base de datos
+            Usuarios.Add(nuevoUsuario);
         }
     }
 }

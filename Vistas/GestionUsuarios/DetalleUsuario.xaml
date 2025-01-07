@@ -40,7 +40,7 @@
                            Width="96"
                            Margin="20"/>
                     <TextBlock Text="Nombre Completo" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="txtNombreUs" 
+                    <TextBox x:Name="txtNombreCompletoUs" 
                              Height="36"
                              FontSize="16" 
                              FontFamily="Gadugi" 
@@ -48,7 +48,8 @@
                              BorderThickness="2"
                              Background="{StaticResource BackgroundBrushSecond}"
                              Style="{StaticResource ModernTextBox}"
-                             Margin="33,0,33,10"/>
+                             Margin="33,0,33,10"
+                             Text="{Binding NombreCompleto, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Correo Electrónico" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtCorreoUs" 
@@ -59,7 +60,8 @@
                              BorderThickness="2"
                              Background="{StaticResource BackgroundBrushSecond}"
                              Style="{StaticResource ModernTextBox}"
-                             Margin="33,0,33,10"/>
+                             Margin="33,0,33,10"
+                             Text="{Binding UsuarioAutenticado.Correo, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Teléfono" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtTelefonoUs" 
@@ -70,7 +72,8 @@
                              BorderThickness="2"
                              Background="{StaticResource BackgroundBrushSecond}"
                              Style="{StaticResource ModernTextBox}"
-                             Margin="33,0,33,10"/>
+                             Margin="33,0,33,10"
+                             Text="{Binding UsuarioAutenticado.Telefono, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Dirección" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtDireccionUs" 
@@ -81,13 +84,15 @@
                              BorderThickness="2"
                              Background="{StaticResource BackgroundBrushSecond}"
                              Style="{StaticResource ModernTextBox}"
-                             Margin="33,0,33,10"/>
+                             Margin="33,0,33,10"
+                             Text="{Binding UsuarioAutenticado.Direccion, UpdateSourceTrigger=PropertyChanged}"/>
                     <Grid Margin="0,15,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="Editar perfil" 
+                        <Button x:Name="btnEditarPerfil"
+                                Content="Editar perfil" 
                                 Grid.Column="0"
                                 FontSize="16" 
                                 Height="39"
@@ -97,6 +102,18 @@
                                 Margin="35,0,80,0"
                                 Style="{StaticResource InverseButtonStyle}"
                                 Click="EditarPerfilBtn_Click"/>
+                        <Button x:Name="btnGuardarCambios"
+                                Content="Guardar cambios"
+                                Grid.Column="0"
+                                FontSize="16" 
+                                Height="39"
+                                FontFamily="Gadugi" 
+                                HorizontalAlignment="Stretch"
+                                FontWeight="SemiBold"
+                                Margin="40,0,35,0"
+                                Style="{StaticResource BaseButtonStyle}"
+                                Click="GuardarCambiosBtn_Click"
+                                Visibility="Collapsed"/>
                         <Button Grid.Column="1"
                                 FontSize="16" 
                                 Height="39"

@@ -13,7 +13,11 @@
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel Margin="160, 0, 160, 0" VerticalAlignment="Center" Background="{StaticResource BackgroundBrushSecond}" MaxWidth="800">
+            <StackPanel Margin="160, 0, 160, 0" 
+                        VerticalAlignment="Center" 
+                        Background="{StaticResource BackgroundBrushSecond}" 
+                        MaxWidth="800"
+                        MinWidth="450">
                 <!--Titulo-->
                 <TextBlock Text="Recuperar Usuario" 
                            FontSize="30" 
@@ -48,8 +52,9 @@
                             FontWeight="SemiBold"
                             Margin="35,0,10,0"
                             Style="{StaticResource BaseButtonStyle}"
-                            Grid.Column="0"/>
-                    
+                            Grid.Column="0"
+                            Click="btnRecuperar_Click"/>
+
                     <Button x:Name="btnCancelar"
                             Content="Cancelar" 
                             FontSize="16" 

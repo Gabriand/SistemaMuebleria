@@ -33,6 +33,9 @@ namespace MuebleriaPIS.VistaModelo
                 new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg" },
                 //Aqui se agregan mas ventanitas de productos
                 new Producto { Nombre = "Sofá bonito", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa1.jpg" },
+                new Producto { Nombre = "Sofá", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg" },
+                new Producto { Nombre = "Mesa de comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg" },
+                new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg" },
             };
         }
 

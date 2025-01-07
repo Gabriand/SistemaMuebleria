@@ -1,34 +1,84 @@
 ﻿using MuebleriaPIS.Modelos;
 using MuebleriaPIS.Servicios;
+using MuebleriaPIS.Utilidades;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using System.Windows;
 
-namespace MuebleriaPIS.VistaModelo
+internal class DetalleUsuarioVistaModelo : INotifyPropertyChanged
 {
-    internal class DetalleUsuarioVistaModelo : INotifyPropertyChanged
+    private Usuario _usuarioAutenticado;
+
+    public DetalleUsuarioVistaModelo()
     {
-        private Usuario _usuarioAutenticado;
+        _usuarioAutenticado = EstadoAutenticacion.Instancia.UsuarioAutenticado;
+        GuardarCommand = new RelayCommand(Guardar);
+    }
 
-        public DetalleUsuarioVistaModelo()
+    public Usuario UsuarioAutenticado
+    {
+        get => _usuarioAutenticado;
+        set
         {
-            _usuarioAutenticado = EstadoAutenticacion.Instancia.UsuarioAutenticado;
+            _usuarioAutenticado = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(NombreCompleto));
         }
+    }
 
-        public Usuario UsuarioAutenticado
+    public string NombreCompleto
+    {
+        get => $"{_usuarioAutenticado.Nombre} {_usuarioAutenticado.Apellido}";
+        set
         {
-            get => _usuarioAutenticado;
-            set
+            var nombres = value.Split(' ');
+            if (nombres.Length >= 2)
             {
-                _usuarioAutenticado = value;
-                OnPropertyChanged();
+                _usuarioAutenticado.Nombre = nombres[0];
+                _usuarioAutenticado.Apellido = string.Join(" ", nombres.Skip(1));
             }
+            else
+            {
+                _usuarioAutenticado.Nombre = nombres[0];
+                _usuarioAutenticado.Apellido = string.Empty;
+            }
+            OnPropertyChanged();
         }
+    }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    public ICommand GuardarCommand { get; }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    private void Guardar()
+    {
+        // Validar los datos
+        if (string.IsNullOrWhiteSpace(_usuarioAutenticado.Nombre) ||
+            string.IsNullOrWhiteSpace(_usuarioAutenticado.Apellido) ||
+            string.IsNullOrWhiteSpace(_usuarioAutenticado.Correo))
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            MessageBox.Show("Todos los campos son obligatorios.");
+            return;
         }
+
+        if (!Validador.EsCorreoValido(_usuarioAutenticado.Correo))
+        {
+            MessageBox.Show("El correo no es válido.");
+            return;
+        }
+
+        // Aquí puedes agregar la lógica para guardar los cambios del usuario
+        EstadoAutenticacion.Instancia.UsuarioAutenticado = _usuarioAutenticado;
+        // También puedes agregar lógica para persistir los cambios en una base de datos o servicio
+
+        // Mostrar mensaje de confirmación
+        MessageBox.Show("Se han actualizado los datos.");
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

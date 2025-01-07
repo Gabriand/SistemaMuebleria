@@ -1,6 +1,3 @@
-C:\Users\gabri\Desktop\POO\MuebleriaPIS\bin\Debug\MuebleriaPIS.exe.config
-C:\Users\gabri\Desktop\POO\MuebleriaPIS\bin\Debug\MuebleriaPIS.exe
-C:\Users\gabri\Desktop\POO\MuebleriaPIS\bin\Debug\MuebleriaPIS.pdb
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\MuebleriaPIS.csproj.AssemblyReference.cache
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\Recursos\Estilos.baml
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\MainWindow.g.cs
@@ -24,6 +21,9 @@ C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\App.g.cs
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\MuebleriaPIS_MarkupCompile.cache
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\MuebleriaPIS_MarkupCompile.lref
+C:\Users\gabri\Desktop\POO\MuebleriaPIS\bin\Debug\MuebleriaPIS.exe.config
+C:\Users\gabri\Desktop\POO\MuebleriaPIS\bin\Debug\MuebleriaPIS.exe
+C:\Users\gabri\Desktop\POO\MuebleriaPIS\bin\Debug\MuebleriaPIS.pdb
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\App.baml
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\MainWindow.baml
 C:\Users\gabri\Desktop\POO\MuebleriaPIS\obj\Debug\Vistas\Catalogo\CatalogoProductos.baml

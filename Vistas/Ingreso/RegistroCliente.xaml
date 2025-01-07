@@ -5,10 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Ingreso"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="800"
+      d:DesignHeight="850" d:DesignWidth="800"
       Background="{StaticResource BackgroundBrushPrimary}">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto">
         <Grid MaxWidth="900">
             <!--barra de navegación-->
             <Grid.RowDefinitions>
@@ -19,7 +20,10 @@
                 <Border.Effect>
                     <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
                 </Border.Effect>
-                <StackPanel Margin="160, 0, 160, 25" VerticalAlignment="Center" Background="{StaticResource BackgroundBrushSecond}">
+                <StackPanel Margin="160, 0, 160, 25" 
+                            VerticalAlignment="Center" 
+                            Background="{StaticResource BackgroundBrushSecond}"
+                            MinWidth="450">
                     <!--Titulo-->
                     <TextBlock Text="Registro del Cliente" 
                                FontSize="36" 
@@ -61,6 +65,18 @@
                                  Style="{StaticResource ModernTextBox}"
                                  Margin="10, 20, 0, 0"/>
                     </Grid>
+
+                    <TextBlock Text="Usuario:" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="txtUsuario" 
+                             Height="36"
+                             FontSize="16" 
+                             FontFamily="Gadugi" 
+                             HorizontalAlignment="Stretch"
+                             BorderThickness="2"
+                             Background="{StaticResource BackgroundBrushSecond}"
+                             Style="{StaticResource ModernTextBox}"
+                             Margin="33,0,33,10"/>
+
                     <TextBlock Text="Correo:" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtCorreo" 
                              Height="36"
@@ -95,15 +111,15 @@
                              Margin="33,0,33,10"/>
 
                     <TextBlock Text="Contraseña:" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="txtContrasena" 
-                             Height="36"
-                             FontSize="16" 
-                             FontFamily="Gadugi" 
-                             HorizontalAlignment="Stretch"
-                             BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
-                             Style="{StaticResource ModernTextBox}"
-                             Margin="33,0,33,10"/>
+                    <PasswordBox x:Name="txtContrasena" 
+                                 Height="36"
+                                 FontSize="16" 
+                                 FontFamily="Gadugi" 
+                                 HorizontalAlignment="Stretch"
+                                 BorderThickness="2"
+                                 Background="{StaticResource BackgroundBrushSecond}"
+                                 Style="{StaticResource ModernPasswordBox}"
+                                 Margin="33,0,33,10"/>
                     <!--Boton de Registro-->
                     <Button x:Name="btnRegistrarse" 
                             Content="Registrarse" 
@@ -114,7 +130,7 @@
                             Margin="35,10,35,20"
                             FontWeight="SemiBold"
                             Style="{StaticResource BaseButtonStyle}"
-                            Grid.Column="0"/>
+                            Click="btnRegistrarse_Click"/>
                     <Button x:Name="btnRegresar" 
                             Content="Regresar" 
                             FontSize="16" 
@@ -124,7 +140,6 @@
                             Margin="35,0,35,25"
                             FontWeight="SemiBold"
                             Style="{StaticResource InverseButtonStyle}"
-                            Grid.Column="0" 
                             Click="btnRegresar_Click"/>
                 </StackPanel>
             </Border>

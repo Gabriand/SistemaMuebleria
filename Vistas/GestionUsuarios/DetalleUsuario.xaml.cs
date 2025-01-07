@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using MuebleriaPIS.VistaModelo;
 
 namespace MuebleriaPIS.Vistas.GestionUsuarios
@@ -31,15 +33,20 @@ namespace MuebleriaPIS.Vistas.GestionUsuarios
                 var usuario = _detalleUsuarioVistaModelo.UsuarioAutenticado;
                 if (usuario != null)
                 {
-                    txtNombreUs.Text = usuario.Nombre ?? string.Empty;
+                    txtNombreCompletoUs.Text = $"{usuario.Nombre} {usuario.Apellido}" ?? string.Empty;
                     txtCorreoUs.Text = usuario.Correo ?? string.Empty;
                     txtTelefonoUs.Text = usuario.Telefono.HasValue ? usuario.Telefono.Value.ToString() : string.Empty;
                     txtDireccionUs.Text = usuario.Direccion ?? string.Empty;
 
-                    txtNombreUs.IsReadOnly = true;
+                    txtNombreCompletoUs.IsReadOnly = true;
                     txtCorreoUs.IsReadOnly = true;
                     txtTelefonoUs.IsReadOnly = true;
                     txtDireccionUs.IsReadOnly = true;
+
+                    txtNombreCompletoUs.Foreground = Brushes.Gray;
+                    txtCorreoUs.Foreground = Brushes.Gray;
+                    txtTelefonoUs.Foreground = Brushes.Gray;
+                    txtDireccionUs.Foreground = Brushes.Gray;
                 }
                 else
                 {
@@ -54,10 +61,51 @@ namespace MuebleriaPIS.Vistas.GestionUsuarios
 
         private void EditarPerfilBtn_Click(object sender, RoutedEventArgs e)
         {
-            txtNombreUs.IsReadOnly = false;
+            txtNombreCompletoUs.IsReadOnly = false;
             txtCorreoUs.IsReadOnly = false;
             txtTelefonoUs.IsReadOnly = false;
             txtDireccionUs.IsReadOnly = false;
+
+            txtNombreCompletoUs.Foreground = Brushes.Black;
+            txtCorreoUs.Foreground = Brushes.Black;
+            txtTelefonoUs.Foreground = Brushes.Black;
+            txtDireccionUs.Foreground = Brushes.Black;
+
+            btnEditarPerfil.Visibility = Visibility.Collapsed;
+            btnGuardarCambios.Visibility = Visibility.Visible;
+        }
+
+        private void GuardarCambiosBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Separar el nombre completo en nombre y apellido
+            var nombreCompleto = txtNombreCompletoUs.Text.Split(' ');
+            if (nombreCompleto.Length >= 2)
+            {
+                _detalleUsuarioVistaModelo.UsuarioAutenticado.Nombre = nombreCompleto[0];
+                _detalleUsuarioVistaModelo.UsuarioAutenticado.Apellido = string.Join(" ", nombreCompleto.Skip(1));
+            }
+            else
+            {
+                _detalleUsuarioVistaModelo.UsuarioAutenticado.Nombre = nombreCompleto[0];
+                _detalleUsuarioVistaModelo.UsuarioAutenticado.Apellido = string.Empty;
+            }
+
+            // Ejecutar el comando GuardarCommand
+            _detalleUsuarioVistaModelo.GuardarCommand.Execute(null);
+
+            // Volver a la vista de solo lectura
+            txtNombreCompletoUs.IsReadOnly = true;
+            txtCorreoUs.IsReadOnly = true;
+            txtTelefonoUs.IsReadOnly = true;
+            txtDireccionUs.IsReadOnly = true;
+
+            txtNombreCompletoUs.Foreground = Brushes.Gray;
+            txtCorreoUs.Foreground = Brushes.Gray;
+            txtTelefonoUs.Foreground = Brushes.Gray;
+            txtDireccionUs.Foreground = Brushes.Gray;
+
+            btnEditarPerfil.Visibility = Visibility.Visible;
+            btnGuardarCambios.Visibility = Visibility.Collapsed;
         }
 
         private void CerrarSesionBtn_Click(object sender, RoutedEventArgs e)

@@ -21,7 +21,11 @@
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel Margin="160, 0, 160, 0" VerticalAlignment="Center" Background="{StaticResource BackgroundBrushSecond}" MaxWidth="800">
+            <StackPanel Margin="160, 0, 160, 0" 
+                        VerticalAlignment="Center" 
+                        Background="{StaticResource BackgroundBrushSecond}" 
+                        MaxWidth="800"
+                        MinWidth="450">
                 <!--Titulo-->
                 <TextBlock Text="Bienvenidos" 
                             FontSize="36" 

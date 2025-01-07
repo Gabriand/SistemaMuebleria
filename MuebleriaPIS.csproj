@@ -234,7 +234,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BD\" />
+    <Folder Include="BaseDatos\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\logo.ico" />
