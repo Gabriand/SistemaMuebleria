@@ -12,13 +12,13 @@ namespace MuebleriaPIS.Servicios
             // Inicializar la lista de productos
             _productos = new List<Producto>
             {
-                new Producto { Nombre = "Sofá", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg", Descripcion = "Un cómodo sofá de tres plazas." },
-                new Producto { Nombre = "Mesa de comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg", Descripcion = "Una elegante mesa de comedor para seis personas." },
+                new Producto { Nombre = "Mueble", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg", Descripcion = "Un cómodo sofá de tres plazas." },
+                new Producto { Nombre = "Comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg", Descripcion = "Una elegante mesa de comedor para seis personas." },
                 new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg", Descripcion = "Una silla ergonómica para oficina." },
-                new Producto { Nombre = "Sofá bonito", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa1.jpg", Descripcion = "Un bonito sofá de dos plazas." },
+                new Producto { Nombre = "Mueble bonito", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa1.jpg", Descripcion = "Un bonito sofá de dos plazas." },
                 // Más productos de prueba
-                new Producto { Nombre = "Sofá", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg", Descripcion = "Un cómodo sofá de tres plazas." },
-                new Producto { Nombre = "Mesa de comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg", Descripcion = "Una elegante mesa de comedor para seis personas." },
+                new Producto { Nombre = "Mueble", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg", Descripcion = "Un cómodo sofá de tres plazas." },
+                new Producto { Nombre = "Comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg", Descripcion = "Una elegante mesa de comedor para seis personas." },
                 new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg", Descripcion = "Una silla ergonómica para oficina." },
             };
         }
