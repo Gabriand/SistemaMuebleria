@@ -10,7 +10,7 @@
       Background="{StaticResource BackgroundBrushSecond}">
 
     <Grid>
-        <!--barra de navegación-->
+        <!-- Barra de navegación -->
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
@@ -26,14 +26,14 @@
                         Background="{StaticResource BackgroundBrushSecond}" 
                         MaxWidth="800"
                         MinWidth="450">
-                <!--Titulo-->
+                <!-- Título -->
                 <TextBlock Text="Bienvenidos" 
                             FontSize="36" 
                             FontFamily="Gadugi" 
                             FontWeight="SemiBold" 
                             HorizontalAlignment="Center" 
                             Margin="0,15,0,30"/>
-                <!--Usuario-->
+                <!-- Usuario -->
                 <TextBlock Text="Usuario:" Margin="35,0,0,5" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                 <TextBox x:Name="txtUsuario" 
                             Height="36"
@@ -44,7 +44,7 @@
                             Background="{StaticResource BackgroundBrushSecond}"
                             Style="{StaticResource ModernTextBox}"
                             Margin="33,0,33,20"/>
-                <!--Contrasena-->
+                <!-- Contraseña -->
                 <TextBlock Text="Contraseña:" Margin="35,0,0,5" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                 <PasswordBox x:Name="txtContrasena" 
                             Height="36"
@@ -55,7 +55,7 @@
                             Background="{StaticResource BackgroundBrushSecond}"
                             Style="{StaticResource ModernPasswordBox}"
                             Margin="33,0,33,10"/>
-                <!--Olvide la contrasena-->
+                <!-- Olvidaste la contraseña -->
                 <TextBlock Text="¿Olvidaste tu contraseña?" 
                            FontSize="16" 
                            FontFamily="Gadugi" 
@@ -64,7 +64,7 @@
                            Style="{StaticResource HyperlinkTextBlockStyle}"
                            Margin="0,0,40,30"
                            MouseLeftButtonUp="OlvidasteContrasena_Click"/>
-                <!--Botones-->
+                <!-- Botones -->
                 <Grid Margin="0,0,0,30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

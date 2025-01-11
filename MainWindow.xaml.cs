@@ -26,7 +26,6 @@ namespace MuebleriaPIS
         {
             InitializeComponent();
             DataContext = new IngresoVistaModelo();
-            //MainFrame.Navigate(new DetalleProductos());
             MainFrame.Navigate(new IngresoPage());
             //MainFrame.Navigate(new CatalogoProductos());
         }

@@ -88,7 +88,7 @@
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"/>
 
-                    <TextBlock Text="Telefono:" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Teléfono:" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtTelefono" 
                              Height="36"
                              FontSize="16" 
