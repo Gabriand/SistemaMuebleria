@@ -5,38 +5,95 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using MuebleriaPIS.Modelos;
-using MuebleriaPIS.Vistas.Catalogo;
-using MuebleriaPIS.Vistas.Compartido;
-using MuebleriaPIS.Vistas.ListaDeseo;
-using MuebleriaPIS.Vistas;
-using MuebleriaPIS.VistaModelo;
-using MuebleriaPIS.Utilidades;
+using MuebleriaPIS.Servicios;
 using System.ComponentModel;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using System.Windows;
-using System.Windows.Controls;
+using MuebleriaPIS.Utilidades;
 
 namespace MuebleriaPIS.VistaModelo
 {
     public class CatalogoProductosVistaModelo : INotifyPropertyChanged
     {
+        private readonly ServicioProductos _servicioProductos;
+
         public ObservableCollection<Producto> Productos { get; set; }
+        public ObservableCollection<Producto> ProductosFiltrados { get; set; }
         public ICommand NavegarADetalleCommand { get; }
+        public ICommand AplicarFiltroCommand { get; }
+
+        private string _categoriaSeleccionada;
+        public string CategoriaSeleccionada
+        {
+            get => _categoriaSeleccionada;
+            set
+            {
+                _categoriaSeleccionada = value;
+                OnPropertyChanged(nameof(CategoriaSeleccionada));
+                AplicarFiltro();
+            }
+        }
+
+        private decimal? _precioMinimo;
+        public decimal? PrecioMinimo
+        {
+            get => _precioMinimo;
+            set
+            {
+                _precioMinimo = value;
+                OnPropertyChanged(nameof(PrecioMinimo));
+                AplicarFiltro();
+            }
+        }
+
+        private decimal? _precioMaximo;
+        public decimal? PrecioMaximo
+        {
+            get => _precioMaximo;
+            set
+            {
+                _precioMaximo = value;
+                OnPropertyChanged(nameof(PrecioMaximo));
+                AplicarFiltro();
+            }
+        }
 
         public CatalogoProductosVistaModelo()
         {
-            Productos = new ObservableCollection<Producto>
+            _servicioProductos = new ServicioProductos();
+            var productos = _servicioProductos.ObtenerProductos();
+
+            Productos = new ObservableCollection<Producto>(productos);
+            ProductosFiltrados = new ObservableCollection<Producto>(Productos);
+            NavegarADetalleCommand = new RelayCommand<object>(NavegarADetalle);
+            AplicarFiltroCommand = new RelayCommand(AplicarFiltro);
+        }
+
+        private void AplicarFiltro()
+        {
+            var productosFiltrados = Productos.AsEnumerable();
+
+            if (!string.IsNullOrEmpty(CategoriaSeleccionada))
             {
-                new Producto { Nombre = "Sofá", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg" },
-                new Producto { Nombre = "Mesa de comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg" },
-                new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg" },
-                //Aqui se agregan mas ventanitas de productos
-                new Producto { Nombre = "Sofá bonito", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa1.jpg" },
-                new Producto { Nombre = "Sofá", Precio = 350.99m, Imagen = "/Recursos/Imagenes/Sofá/sofa.jpg" },
-                new Producto { Nombre = "Mesa de comedor", Precio = 450.50m, Imagen = "/Recursos/Imagenes/MesaComedor/mesa.jpg" },
-                new Producto { Nombre = "Silla", Precio = 120.00m, Imagen = "/Recursos/Imagenes/Sillas/silla.jpg" },
-            };
+                productosFiltrados = productosFiltrados.Where(p => p.Categoria.Id.ToString() == CategoriaSeleccionada);
+            }
+
+            if (PrecioMinimo.HasValue)
+            {
+                productosFiltrados = productosFiltrados.Where(p => p.Precio >= PrecioMinimo.Value);
+            }
+
+            if (PrecioMaximo.HasValue)
+            {
+                productosFiltrados = productosFiltrados.Where(p => p.Precio <= PrecioMaximo.Value);
+            }
+
+            ProductosFiltrados = new ObservableCollection<Producto>(productosFiltrados);
+            OnPropertyChanged(nameof(ProductosFiltrados));
+        }
+
+        private void NavegarADetalle(object parameter)
+        {
+            // Lógica para navegar a la vista de detalles del producto
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,4 +104,3 @@ namespace MuebleriaPIS.VistaModelo
         }
     }
 }
-

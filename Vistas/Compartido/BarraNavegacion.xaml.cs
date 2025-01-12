@@ -40,6 +40,8 @@ namespace MuebleriaPIS.Vistas.Compartido
             set { SetValue(MostrarBotonBusquedaProperty, value); }
         }
 
+        public event EventHandler BusquedaClicked;
+
         public BarraNavegacion()
         {
             InitializeComponent();
@@ -97,7 +99,7 @@ namespace MuebleriaPIS.Vistas.Compartido
 
         private void Busqueda_Click(object sender, MouseButtonEventArgs e)
         {
-            // Lanzar el evento BusquedaClicked
+            BusquedaClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

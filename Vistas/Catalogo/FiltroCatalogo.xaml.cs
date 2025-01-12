@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MuebleriaPIS.Vistas.Compartido;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.Catalogo
 {
-    public partial class FiltroCatalogo : Page
+    public partial class FiltroCatalogo : UserControl
     {
         public FiltroCatalogo()
         {

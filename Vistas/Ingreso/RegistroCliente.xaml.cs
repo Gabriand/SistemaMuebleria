@@ -8,7 +8,7 @@ namespace MuebleriaPIS.Vistas.Ingreso
     public partial class RegistroCliente : Page
     {
         // Conexión a la base de datos
-        private const string connectionString = "Server=127.0.0.1;Port=3306;Database=muebleria_jpatinio;Uid=root;Pwd=bryan2004;";
+        private const string connectionString = "Server=127.0.0.1;Port=3306;Database=muebleria_jpatinio;Uid=root;Pwd=root;";
 
         public RegistroCliente()
         {
@@ -107,7 +107,7 @@ namespace MuebleriaPIS.Vistas.Ingreso
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            // Aquí puedes manejar el evento para regresar a una ventana anterior o a otra vista.
+            this.NavigationService.Navigate(new IngresoPage());
         }
     }
 }

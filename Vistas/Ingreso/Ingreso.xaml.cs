@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using MySql.Data.MySqlClient;
 using MuebleriaPIS.VistaModelo;
 using MuebleriaPIS.Vistas.Catalogo;
-using MuebleriaPIS.Vistas.Ingreso;  // Agregar la referencia al espacio de nombres Catalogo
+using MuebleriaPIS.Vistas.Ingreso; 
 
 namespace MuebleriaPIS.Vistas
 {
@@ -12,21 +12,18 @@ namespace MuebleriaPIS.Vistas
     {
         private BarraNavegacionVistaModelo _viewModel;
 
-        // Cadena de conexión a la base de datos
-        private const string connectionString = "Server=127.0.0.1;Port=3306;Database=muebleria_jpatinio;Uid=root;Pwd=bryan2004;";
+        private const string connectionString = "Server=127.0.0.1;Port=3306;Database=muebleria_jpatinio;Uid=root;Pwd=root;";
 
         public IngresoPage()
         {
             InitializeComponent();
 
-            // Barra de Navegación
             _viewModel = new BarraNavegacionVistaModelo
             {
-                MostrarControlesUsuario = false, // Oculta los controles de usuario en la página de ingreso
+                MostrarControlesUsuario = false, 
             };
             barraNavegacion.DataContext = _viewModel;
 
-            // Configurar el DataContext para IngresoVistaModelo
             DataContext = new IngresoVistaModelo();
         }
 
@@ -35,24 +32,18 @@ namespace MuebleriaPIS.Vistas
             string usuario = txtUsuario.Text;
             string contrasena = txtContrasena.Password;
 
-            // Validar acceso para administrador o trabajador con credenciales fijas
-            if ((usuario == "admin" || usuario == "trabajador") && contrasena == "1234")
+            if ((usuario == "Admin" || usuario == "admin" || usuario == "Trabajador" || usuario == "trabajador") && contrasena == "1234")
             {
-                // Lógica para administrador o trabajador
                 MessageBox.Show("Bienvenido, " + usuario, "Acceso Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Redirigir a la página de catálogo para administrador o trabajador
-                this.NavigationService.Navigate(new CatalogoProductos());
+                this.NavigationService.Navigate(new InicioTrabajador());
             }
             else
             {
-                // Verificar usuario y contraseña en la base de datos para clientes
                 bool usuarioValido = ValidarCliente(usuario, contrasena);
                 if (usuarioValido)
                 {
                     MessageBox.Show("Bienvenido, " + usuario, "Acceso Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    // Redirigir a la página de catálogo para clientes
                     this.NavigationService.Navigate(new CatalogoProductos());
                 }
                 else
