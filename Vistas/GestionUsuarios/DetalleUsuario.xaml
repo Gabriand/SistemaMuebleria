@@ -25,7 +25,8 @@
                    FontFamily="Gadugi" 
                    FontWeight="SemiBold" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   Margin="0, 5, 0, 0"/>
 
         <ScrollViewer Grid.Row="2">
             <Border>
@@ -39,8 +40,9 @@
                     <Image Source="/Recursos/Imagenes/Usuario/Perfil.ico" 
                            Width="96"
                            Margin="20"/>
-                    <TextBlock Text="Nombre Completo" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="txtNombreCompletoUs" 
+                    
+                    <TextBlock Text="Nombres" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="txtNombresUs" 
                              Height="36"
                              FontSize="16" 
                              FontFamily="Gadugi" 
@@ -49,7 +51,20 @@
                              Background="{StaticResource BackgroundBrushSecond}"
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
-                             Text="{Binding NombreCompleto, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding UsuarioAutenticado.Nombres, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Apellidos" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="txtApellidosUs" 
+                             Height="36"
+                             FontSize="16" 
+                             FontFamily="Gadugi" 
+                             HorizontalAlignment="Stretch"
+                             BorderThickness="2"
+                             Background="{StaticResource BackgroundBrushSecond}"
+                             Style="{StaticResource ModernTextBox}"
+                             Margin="33,0,33,10"
+                             Text="{Binding UsuarioAutenticado.Apellidos, UpdateSourceTrigger=PropertyChanged}"/>
+
 
                     <TextBlock Text="Correo Electrónico" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtCorreoUs" 
@@ -75,6 +90,17 @@
                              Margin="33,0,33,10"
                              Text="{Binding UsuarioAutenticado.Telefono, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <TextBlock Text="Teléfono Anterior" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="txtTelefonoAnterior" 
+                             Height="36"
+                             FontSize="16" 
+                             FontFamily="Gadugi" 
+                             HorizontalAlignment="Stretch"
+                             BorderThickness="2"
+                             Background="{StaticResource BackgroundBrushSecond}"
+                             Style="{StaticResource ModernTextBox}"
+                             Margin="33,0,33,10"/>
+
                     <TextBlock Text="Dirección" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtDireccionUs" 
                              Height="36"
@@ -86,11 +112,13 @@
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
                              Text="{Binding UsuarioAutenticado.Direccion, UpdateSourceTrigger=PropertyChanged}"/>
+
                     <Grid Margin="0,15,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        
                         <Button x:Name="btnEditarPerfil"
                                 Content="Editar perfil" 
                                 Grid.Column="0"
@@ -102,6 +130,7 @@
                                 Margin="35,0,80,0"
                                 Style="{StaticResource InverseButtonStyle}"
                                 Click="EditarPerfilBtn_Click"/>
+                        
                         <Button x:Name="btnGuardarCambios"
                                 Content="Guardar cambios"
                                 Grid.Column="0"
@@ -114,6 +143,7 @@
                                 Style="{StaticResource BaseButtonStyle}"
                                 Click="GuardarCambiosBtn_Click"
                                 Visibility="Collapsed"/>
+                        
                         <Button Grid.Column="1"
                                 FontSize="16" 
                                 Height="39"

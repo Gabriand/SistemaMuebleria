@@ -1,111 +1,104 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using MuebleriaPIS.VistaModelo;
 
 namespace MuebleriaPIS.Vistas.GestionUsuarios
 {
     public partial class DetalleUsuario : Page
     {
-        private DetalleUsuarioVistaModelo _detalleUsuarioVistaModelo;
+        // Cadena de conexión a la base de datos (ajustada con la que proporcionaste)
+        private const string connectionString = "Server=127.0.0.1;Port=3306;Database=muebleria_jpatinio;Uid=root;Pwd=root;";
 
         public DetalleUsuario()
         {
             InitializeComponent();
-            try
-            {
-                _detalleUsuarioVistaModelo = new DetalleUsuarioVistaModelo();
-                DataContext = _detalleUsuarioVistaModelo;
-                MostrarDatosUsuario();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al inicializar DetalleUsuario: {ex.Message}");
-            }
         }
 
-        private void MostrarDatosUsuario()
-        {
-            try
-            {
-                var usuario = _detalleUsuarioVistaModelo.UsuarioAutenticado;
-                if (usuario != null)
-                {
-                    txtNombreCompletoUs.Text = $"{usuario.Nombre} {usuario.Apellido}" ?? string.Empty;
-                    txtCorreoUs.Text = usuario.Correo ?? string.Empty;
-                    txtTelefonoUs.Text = usuario.Telefono.HasValue ? usuario.Telefono.Value.ToString() : string.Empty;
-                    txtDireccionUs.Text = usuario.Direccion ?? string.Empty;
-
-                    txtNombreCompletoUs.IsReadOnly = true;
-                    txtCorreoUs.IsReadOnly = true;
-                    txtTelefonoUs.IsReadOnly = true;
-                    txtDireccionUs.IsReadOnly = true;
-
-                    txtNombreCompletoUs.Foreground = Brushes.Gray;
-                    txtCorreoUs.Foreground = Brushes.Gray;
-                    txtTelefonoUs.Foreground = Brushes.Gray;
-                    txtDireccionUs.Foreground = Brushes.Gray;
-                }
-                else
-                {
-                    MessageBox.Show("No se encontró un usuario autenticado.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al mostrar datos del usuario: {ex.Message}");
-            }
-        }
-
+        // Método que se ejecuta al hacer clic en el botón "Editar perfil"
         private void EditarPerfilBtn_Click(object sender, RoutedEventArgs e)
         {
-            txtNombreCompletoUs.IsReadOnly = false;
-            txtCorreoUs.IsReadOnly = false;
-            txtTelefonoUs.IsReadOnly = false;
-            txtDireccionUs.IsReadOnly = false;
+            // Hacer visibles los campos de texto para editar
+            txtNombresUs.IsEnabled = true;
+            txtApellidosUs.IsEnabled = true;
+            txtCorreoUs.IsEnabled = true;
+            txtTelefonoUs.IsEnabled = true;
+            txtDireccionUs.IsEnabled = true;
 
-            txtNombreCompletoUs.Foreground = Brushes.Black;
-            txtCorreoUs.Foreground = Brushes.Black;
-            txtTelefonoUs.Foreground = Brushes.Black;
-            txtDireccionUs.Foreground = Brushes.Black;
-
-            btnEditarPerfil.Visibility = Visibility.Collapsed;
+            // Hacer visible el botón "Guardar cambios" y ocultar el botón "Editar perfil"
             btnGuardarCambios.Visibility = Visibility.Visible;
+            btnEditarPerfil.Visibility = Visibility.Collapsed;
         }
 
+        // Método que se ejecuta al hacer clic en el botón "Guardar cambios"
         private void GuardarCambiosBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Separar el nombre completo en nombre y apellido
-            var nombreCompleto = txtNombreCompletoUs.Text.Split(' ');
-            if (nombreCompleto.Length >= 2)
+            try
             {
-                _detalleUsuarioVistaModelo.UsuarioAutenticado.Nombre = nombreCompleto[0];
-                _detalleUsuarioVistaModelo.UsuarioAutenticado.Apellido = string.Join(" ", nombreCompleto.Skip(1));
+                // Validar que el campo de teléfono anterior y el teléfono nuevo no estén vacíos
+                if (string.IsNullOrEmpty(txtTelefonoAnterior.Text) || string.IsNullOrEmpty(txtTelefonoUs.Text))
+                {
+                    MessageBox.Show("Por favor, ingrese tanto el teléfono anterior como el nuevo.", "Campos incompletos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Obtener el teléfono anterior y el nuevo teléfono
+                string telefonoAnterior = txtTelefonoAnterior.Text.Trim();
+                string nuevoTelefono = txtTelefonoUs.Text.Trim();
+
+                // Usar la cadena de conexión proporcionada
+                using (var connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
+                {
+                    // Verificar la conexión
+                    connection.Open();
+
+                    // Consultar el Id_Cliente usando el teléfono anterior
+                    string query = "SELECT Id_Cliente FROM Cliente WHERE Telefono = @TelefonoAnterior";  // Cambié 'Clientes' a 'Cliente'
+                    var command = new MySql.Data.MySqlClient.MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@TelefonoAnterior", telefonoAnterior);
+
+                    // Ejecutar la consulta
+                    var result = command.ExecuteScalar();
+
+                    // Si se encuentra un cliente con el teléfono anterior
+                    if (result != null && result is int idCliente)
+                    {
+                        // Actualizar los datos del cliente
+                        string updateQuery = "UPDATE Cliente SET Telefono = @NuevoTelefono, Nombres = @Nombres, Apellidos = @Apellidos, Correo_Electronico = @CorreoElectronico, Direccion = @Direccion WHERE Id_Cliente = @IdCliente";  // Cambié 'Correo' a 'Correo_Electronico'
+                        var updateCommand = new MySql.Data.MySqlClient.MySqlCommand(updateQuery, connection);
+                        updateCommand.Parameters.AddWithValue("@NuevoTelefono", nuevoTelefono);
+                        updateCommand.Parameters.AddWithValue("@Nombres", txtNombresUs.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@Apellidos", txtApellidosUs.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@CorreoElectronico", txtCorreoUs.Text.Trim());  // Cambié 'Correo' a 'Correo_Electronico'
+                        updateCommand.Parameters.AddWithValue("@Direccion", txtDireccionUs.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@IdCliente", idCliente);
+
+                        // Ejecutar la actualización
+                        int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                        // Mostrar mensaje de éxito
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Los datos del cliente se han actualizado correctamente.", "Actualización exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo actualizar los datos del cliente.", "Error de actualización", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un cliente con el teléfono anterior ingresado.", "Cliente no encontrado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
             }
-            else
+            catch (MySql.Data.MySqlClient.MySqlException sqlEx)
             {
-                _detalleUsuarioVistaModelo.UsuarioAutenticado.Nombre = nombreCompleto[0];
-                _detalleUsuarioVistaModelo.UsuarioAutenticado.Apellido = string.Empty;
+                MessageBox.Show($"Error en la consulta de base de datos: {sqlEx.Message}", "Error de base de datos", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            // Ejecutar el comando GuardarCommand
-            _detalleUsuarioVistaModelo.GuardarCommand.Execute(null);
-
-            // Volver a la vista de solo lectura
-            txtNombreCompletoUs.IsReadOnly = true;
-            txtCorreoUs.IsReadOnly = true;
-            txtTelefonoUs.IsReadOnly = true;
-            txtDireccionUs.IsReadOnly = true;
-
-            txtNombreCompletoUs.Foreground = Brushes.Gray;
-            txtCorreoUs.Foreground = Brushes.Gray;
-            txtTelefonoUs.Foreground = Brushes.Gray;
-            txtDireccionUs.Foreground = Brushes.Gray;
-
-            btnEditarPerfil.Visibility = Visibility.Visible;
-            btnGuardarCambios.Visibility = Visibility.Collapsed;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al intentar guardar los cambios: {ex.Message}", "Error inesperado", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CerrarSesionBtn_Click(object sender, RoutedEventArgs e)
