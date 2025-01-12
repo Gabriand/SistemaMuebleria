@@ -13,7 +13,7 @@ namespace MuebleriaPIS.Modelos
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-        public int CategoriaId { get; set; }
+        public Categoria Categoria { get; set; } // Asegúrate de que esta propiedad sea pública y tenga el nombre correcto
         public string Imagen { get; set; }
         public string Detalle { get; set; }
         public int Cantidad { get; set; }
