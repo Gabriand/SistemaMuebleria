@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -27,7 +27,7 @@
 
         <StackPanel Grid.Row="1" Margin="20,0,20,20">
             <TextBlock Text="Categorías"
-                       FontSize="20"
+                       FontSize="19"
                        FontWeight="SemiBold"
                        FontFamily="Gadugi"
                        Foreground="{StaticResource TextPrimaryBrush}"
@@ -89,7 +89,7 @@
 
         <StackPanel Grid.Row="2" Margin="20,0,20,0">
             <TextBlock Text="Rango de precio"
-               FontSize="20"
+               FontSize="19"
                FontWeight="SemiBold"
                FontFamily="Gadugi"
                Foreground="{StaticResource TextPrimaryBrush}"
@@ -110,7 +110,7 @@
 
                     <TextBlock Text="Min"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="15"
                       FontWeight="SemiBold"
                       FontFamily="Gadugi"
                       Foreground="{StaticResource TextPrimaryBrush}"
@@ -119,7 +119,7 @@
 
                     <TextBlock Text="Max"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="15"
                       FontWeight="SemiBold"
                       FontFamily="Gadugi"
                       Foreground="{StaticResource TextPrimaryBrush}"

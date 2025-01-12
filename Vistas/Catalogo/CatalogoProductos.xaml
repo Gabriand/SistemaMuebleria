@@ -32,7 +32,7 @@
         <!-- Contenido del catálogo de productos -->
         <Grid Grid.Row="1" Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -43,7 +43,7 @@
                        FontWeight="SemiBold" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Margin="5"/>
+                       Margin="0,15,0,10"/>
 
             <Border Grid.Row="1">
                 <Border.Effect>
