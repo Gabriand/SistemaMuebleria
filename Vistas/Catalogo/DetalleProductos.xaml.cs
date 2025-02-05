@@ -1,20 +1,16 @@
-﻿using MuebleriaPIS.VistaModelo;
+﻿using MuebleriaPIS.Modelos;
+using MuebleriaPIS.VistaModelo;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace MuebleriaPIS.Vistas.Catalogo
 {
     public partial class DetalleProductos : Page
     {
-        public DetalleProductos()
+        public DetalleProductos(Producto producto, CatalogoProductosVistaModelo catalogoProductosVistaModelo, string usuarioActual)
         {
             InitializeComponent();
-        }
-
-        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new CatalogoProductos());
+            DataContext = new DetalleProductosVistaModelo(producto, catalogoProductosVistaModelo, usuarioActual);
         }
     }
 }

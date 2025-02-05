@@ -52,32 +52,18 @@
                          RowBackground="White"
                          AlternatingRowBackground="#F5F5F5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Cliente" 
-                                          Binding="{Binding Cliente}" 
+                        <DataGridTextColumn Header="Id Cliente" 
+                                          Binding="{Binding IdCliente}" 
+                                          Width="0.3*"/>
+                        <DataGridTextColumn Header="Nombre" 
+                                          Binding="{Binding Nombre}" 
                                           Width="0.3*"/>
                         <DataGridTextColumn Header="Total de Productos" 
                                           Binding="{Binding TotalProductos}" 
                                           Width="0.3*"/>
-                        <DataGridTemplateColumn Header="Acciones" 
-                                              Width="0.4*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="Ver Detalles"
-                                                Margin="0,0,5,0"
-                                                Background="#F9A825"
-                                                Foreground="White"
-                                                BorderThickness="0"
-                                                Padding="10,5"/>
-                                        <Button Content="Actualizar Estado"
-                                                Background="#2E7D32"
-                                                Foreground="White"
-                                                BorderThickness="0"
-                                                Padding="10,5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Total de Precio" 
+                                          Binding="{Binding TotalPrecio}" 
+                                          Width="0.3*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

@@ -15,15 +15,16 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <compartido:BarraNavegacion Grid.Row="0" x:Name="barraNavegacion"/>
 
-        <Border Grid.Row="1">
+        <Border Grid.Row="1" OpacityMask="#FFF1F8FF" BorderBrush="#FFC79F9F" Background="#FFD6D6D6">
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
             </Border.Effect>
             <StackPanel Margin="160, 0, 160, 0" 
                         VerticalAlignment="Center" 
-                        Background="{StaticResource BackgroundBrushSecond}" 
+                        Background="#FFD8D7D7" 
                         MaxWidth="800"
                         MinWidth="450">
                 <!-- Título -->
@@ -90,9 +91,10 @@
                             HorizontalAlignment="Stretch" 
                             FontWeight="SemiBold"
                             Margin="10,0,40,0"
-                            Style="{StaticResource BaseButtonStyle}"
-                            Grid.Column="1" 
-                            Click="btnRegistrarse_Click"/>
+                            Style="{StaticResource InverseButtonStyle}"
+                            Grid.Column="1"
+                            Foreground="White"
+                            Click="btnRegistrarse_Click" Background="#FF63D47F"/>
                 </Grid>
             </StackPanel>
         </Border>

@@ -3,15 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Inventario"
-      xmlns:vm="clr-namespace:MuebleriaPIS.VistaModelo"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="900"
       Background="{StaticResource BackgroundBrushSecond}">
-
-    <Page.DataContext>
-        <vm:GestionInventarioVistaModelo/>
-    </Page.DataContext>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -20,87 +14,95 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image  Source="/Recursos/Imagenes/BarraNavegacion/Regreso.ico"
-                Grid.Row="0" 
-                HorizontalAlignment="Left"
-                Width="30"
-                Margin="2,0,0,10"
-                MouseEnter="Image_MouseEnter"
-                MouseLeave="Image_MouseLeave"
-                MouseLeftButtonUp="Regreso_Click">
-        </Image>
+        <Image Source="/Recursos/Imagenes/BarraNavegacion/Regreso.ico"
+               Grid.Row="0"
+               Width="30"
+               Margin="2,0,0,0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               MouseEnter="Image_MouseEnter"
+               MouseLeave="Image_MouseLeave"
+               MouseLeftButtonUp="RegresarBtn_Click"/>
 
+        <!-- Título -->
         <TextBlock Grid.Row="1" 
                    Text="Gestión de Inventario" 
                    FontSize="32" 
                    FontWeight="SemiBold"
-                   FontFamily="Gadugi"
                    HorizontalAlignment="Center"
-                   Margin="0,0,0,10"/>
+                   Margin="0,0,0,20"/>
 
+        <!-- Contenido Principal -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="350"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!-- Panel para agregar/actualizar productos -->
             <StackPanel Grid.Column="0" Margin="0,0,20,0">
                 <Border Background="White" 
                         CornerRadius="8" 
-                        Padding="20" 
-                        Margin="0,0,0,20">
+                        Padding="20">
                     <StackPanel>
-                        <TextBlock Text="Actualizar Producto" 
-                                 FontSize="20" 
-                                 FontWeight="SemiBold" 
-                                 Margin="0,0,0,15"/>
+                        <TextBlock Text="Datos del Producto" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,15"/>
 
-                        <TextBlock Text="Seleccionar Producto" 
-                                 Margin="0,0,0,5"
-                                 FontWeight="Medium"/>
-                        <ComboBox x:Name="cbProductos" 
-                                  Height="35"
-                                  Style="{StaticResource ModernComboBox}"
-                                  Margin="0,0,0,15"
-                                  DisplayMemberPath="Nombre"
-                                  ItemsSource="{Binding Inventario}"
-                                  SelectedItem="{Binding ProductoSeleccionado}"/>
+                        <!-- ID del Producto -->
+                        <TextBlock Text="ID del Producto" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtIdProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
 
-                        <TextBlock Text="Nuevo Nombre" 
-                                 Margin="0,0,0,5"
-                                 FontWeight="Medium"/>
+                        <!-- Nombre -->
+                        <TextBlock Text="Nombre" 
+                                   Margin="0,0,0,5"/>
                         <TextBox x:Name="txtNombreProducto" 
-                                Height="35"
-                                Style="{StaticResource ModernTextBox}"
-                                Margin="0,0,0,15"
-                                Text="{Binding NombreProducto, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
 
-                        <TextBlock Text="Nuevo Precio" 
-                                 Margin="0,0,0,5"
-                                 FontWeight="Medium"/>
+                        <!-- Precio -->
+                        <TextBlock Text="Precio" 
+                                   Margin="0,0,0,5"/>
                         <TextBox x:Name="txtPrecioProducto" 
-                                Height="35"
-                                Style="{StaticResource ModernTextBox}"
-                                Margin="0,0,0,15"
-                                Text="{Binding PrecioProducto, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
 
-                        <TextBlock Text="Stock del Producto" 
-                                 Margin="0,0,0,5"
-                                 FontWeight="Medium"/>
+                        <!-- Categoría -->
+                        <TextBlock Text="Categoría" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtCategoriaProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
+
+                        <!-- Cantidad Disponible -->
+                        <TextBlock Text="Cantidad Disponible" 
+                                   Margin="0,0,0,5"/>
                         <TextBox x:Name="txtStockProducto" 
-                                 Height="35"
-                                 Style="{StaticResource ModernTextBox}"
-                                 Margin="0,0,0,40"
-                                 Text="{Binding StockProducto, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,20"/>
 
-                        <Button Content="Actualizar Producto"
-                                Height="40"
-                                Style="{StaticResource BaseButtonStyle}"
-                                Command="{Binding ActualizarProductoCommand}"/>
+                        <!-- Botón de Agregar o Actualizar -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Agregar o Actualizar Producto"
+                                    Width="200" 
+                                    Height="40" 
+                                    Style="{StaticResource BaseButtonStyle}" 
+                                    Click="AgregarOActualizarProducto_Click"/>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
             </StackPanel>
 
+            <!-- DataGrid para mostrar inventario -->
             <Border Grid.Column="1" 
                     Background="White" 
                     CornerRadius="8" 
@@ -112,26 +114,27 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" 
-                             Text="Inventario Actual" 
-                             FontSize="20" 
-                             FontWeight="SemiBold" 
-                             Margin="0,0,0,15"/>
+                               Text="Inventario Actual" 
+                               FontSize="20" 
+                               FontWeight="SemiBold" 
+                               Margin="0,0,0,15"/>
 
                     <DataGrid Grid.Row="1" 
-                             x:Name="dgInventario"
-                             AutoGenerateColumns="False"
-                             IsReadOnly="True"
-                             Background="White"
-                             BorderThickness="1"
-                             BorderBrush="#EEEEEE"
-                             RowBackground="White"
-                             AlternatingRowBackground="#F5F5F5"
-                             ItemsSource="{Binding Inventario}">
+                              x:Name="dgInventario"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              Background="White"
+                              BorderThickness="1"
+                              BorderBrush="#EEEEEE"
+                              RowBackground="White"
+                              AlternatingRowBackground="#F5F5F5">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.15*"/>
-                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="0.4*"/>
+                            <DataGridTextColumn Header="ID Producto" Binding="{Binding IdProducto}" Width="0.2*"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="0.3*"/>
                             <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="0.2*"/>
-                            <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="0.25*"/>
+                            <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" Width="0.2*"/>
+                            <DataGridTextColumn Header="Fecha Ingreso" Binding="{Binding FechaIngreso}" Width="0.3*"/>
+                            <DataGridTextColumn Header="Cantidad" Binding="{Binding CantidadDisponible}" Width="0.2*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

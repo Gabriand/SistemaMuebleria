@@ -47,31 +47,19 @@ namespace MuebleriaPIS.Vistas.Ingreso
                     {
                         try
                         {
-                            // Inserción en la tabla de usuario
-                            string queryUsuario = "INSERT INTO usuario (NombreUsuario, Contrasena) VALUES (@NomUsuario, @Contrasena); " +
-                                                  "SELECT LAST_INSERT_ID();";
-                            int idUsuario;
-                            using (MySqlCommand cmdUsuario = new MySqlCommand(queryUsuario, connection, transaction))
-                            {
-                                cmdUsuario.Parameters.AddWithValue("@NomUsuario", usuario);
-                                cmdUsuario.Parameters.AddWithValue("@Contrasena", contrasena); // Hash de la contraseña si es necesario
-
-                                idUsuario = Convert.ToInt32(cmdUsuario.ExecuteScalar()); // Obtener el ID del usuario recién creado
-
-                                // Ahora, ese ID de usuario lo asignaremos como Id_Cliente
-                            }
-
-                            // Inserción en la tabla de cliente (usando el idUsuario como Id_Cliente)
-                            string queryCliente = "INSERT INTO cliente (Id_Cliente, Nombres, Apellidos, Direccion, Telefono, Correo_Electronico) " +
-                                                  "VALUES (@IdCliente, @Nombres, @Apellidos, @Direccion, @Telefono, @CorreoElectronico);";
+                            // Inserción en la tabla de cliente
+                            string queryCliente = "INSERT INTO cliente (Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono, Correo_Electronico, Fecha_registro) " +
+                                                  "VALUES (@Usuario, @Contrasena, @Nombres, @Apellidos, @Direccion, @Telefono, @CorreoElectronico, @FechaRegistro);";
                             using (MySqlCommand cmdCliente = new MySqlCommand(queryCliente, connection, transaction))
                             {
-                                cmdCliente.Parameters.AddWithValue("@IdCliente", idUsuario);  // Usamos el Id de usuario como Id_Cliente
+                                cmdCliente.Parameters.AddWithValue("@Usuario", usuario);
+                                cmdCliente.Parameters.AddWithValue("@Contrasena", contrasena); // Hash de la contraseña si es necesario
                                 cmdCliente.Parameters.AddWithValue("@Nombres", nombres);
                                 cmdCliente.Parameters.AddWithValue("@Apellidos", apellidos);
                                 cmdCliente.Parameters.AddWithValue("@Direccion", direccion);
                                 cmdCliente.Parameters.AddWithValue("@Telefono", telefono);
                                 cmdCliente.Parameters.AddWithValue("@CorreoElectronico", correoElectronico);
+                                cmdCliente.Parameters.AddWithValue("@FechaRegistro", DateTime.Now);
 
                                 // Ejecutar la inserción
                                 cmdCliente.ExecuteNonQuery();

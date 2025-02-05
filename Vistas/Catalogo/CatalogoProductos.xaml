@@ -34,6 +34,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="Productos"
@@ -61,9 +62,10 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray" Margin="22" CornerRadius="0">
                                     <StackPanel Width="250" Background="{StaticResource BackgroundBrushSecond}">
-                                        <Image Source="{Binding Imagen}" 
+                                        <Image Source="{Binding ImagenRuta}"
                                                Height="250" 
                                                Stretch="UniformToFill"/>
+                                        
                                         <TextBlock Text="{Binding Nombre}" 
                                                    FontSize="20"
                                                    FontFamily="Gadugi"
@@ -89,7 +91,7 @@
                                                     Grid.Column="1"
                                                     Style="{StaticResource InverseButtonStyle}"
                                                     Margin="0,0,25,15" 
-                                                    Command="{Binding NavegarADetalleCommand}" 
+                                                    Command="{Binding DataContext.NavegarADetalleCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" 
                                                     CommandParameter="{Binding}" 
                                                     HorizontalAlignment="Right"
                                                     VerticalAlignment="Center"/>
@@ -101,6 +103,17 @@
                     </ItemsControl>
                 </ScrollViewer>
             </Border>
+
+            <Button Grid.Row="2"
+                    Content=" Seleccionar Productos "
+                    Style="{StaticResource InverseButtonStyle}"
+                    FontSize="16"
+                    FontFamily="Gadugi"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    Click="SeleccionarProductos_Click"/>
         </Grid>
     </Grid>
 </Page>

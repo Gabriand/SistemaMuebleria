@@ -3,6 +3,7 @@ using MuebleriaPIS.Vistas;
 using MuebleriaPIS.Vistas.Catalogo;
 using MuebleriaPIS.Vistas.Compartido;
 using MuebleriaPIS.Vistas.ListaDeseo;
+using MuebleriaPIS.Vistas.GestionUsuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,12 @@ namespace MuebleriaPIS
         {
             InitializeComponent();
             DataContext = new IngresoVistaModelo();
-            //MainFrame.Navigate(new IngresoPage());
-            MainFrame.Navigate(new InicioTrabajador());
+            MainFrame.Navigate(new IngresoPage());
+            //MainFrame.Navigate(new InicioTrabajador());
+            //MainFrame.Navigate(new DetalleProductos());
             //MainFrame.Navigate(new CatalogoProductos());
+            //MainFrame.Navigate(new InicioAdmin());
+
         }
     }
 }

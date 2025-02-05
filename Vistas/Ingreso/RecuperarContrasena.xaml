@@ -13,26 +13,26 @@
             <Border.Effect>
                 <DropShadowEffect Color="Gray" BlurRadius="6" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel Margin="160, 0, 160, 0" 
+            <StackPanel Margin="160,0,160,0" 
                         VerticalAlignment="Center" 
                         Background="{StaticResource BackgroundBrushSecond}" 
                         MaxWidth="800"
-                        MinWidth="450">
+                        MinWidth="450" Height="217">
                 <!--Titulo-->
-                <TextBlock Text="Recuperar Usuario o Contraseña"
+                <TextBlock Text="Ajustes de cuenta"
                            FontSize="30" 
                            FontFamily="Gadugi" 
                            FontWeight="SemiBold" 
                            HorizontalAlignment="Center"
                            Margin="10, 15, 10, 15"/>
                 <!--Correo de recuperacion-->
-                <TextBlock Text="Para recuperar el usuario o la contraseña contactese al siguiente correo: admin@muebleria.com"
+                <TextBlock Text="Para recuperar el usuario y (o) la contraseña o eliminar sus cuenta contactese al siguiente correo: admin@muebleria.com"
                            TextWrapping="Wrap"
-                           Margin="35,0,0,15"
+                           Margin="35,0,0,20"
                            FontSize="16" 
                            FontFamily="Gadugi"
                            Foreground="Gray"
-                           HorizontalAlignment="Center" Width="408" Height="47"/>
+                           HorizontalAlignment="Center" Width="400" Height="63"/>
                 <!--Boton-->
                 <Button x:Name="Regresar"
                             Content="Regresar" 

@@ -40,7 +40,7 @@
                     <Image Source="/Recursos/Imagenes/Usuario/Perfil.ico" 
                            Width="96"
                            Margin="20"/>
-                    
+
                     <TextBlock Text="Nombres" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtNombresUs" 
                              Height="36"
@@ -48,10 +48,10 @@
                              FontFamily="Gadugi" 
                              HorizontalAlignment="Stretch"
                              BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
+                             Background="LightGray"
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
-                             Text="{Binding UsuarioAutenticado.Nombres, UpdateSourceTrigger=PropertyChanged}"/>
+                             IsEnabled="False"/>
 
                     <TextBlock Text="Apellidos" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtApellidosUs" 
@@ -60,11 +60,10 @@
                              FontFamily="Gadugi" 
                              HorizontalAlignment="Stretch"
                              BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
+                             Background="LightGray"
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
-                             Text="{Binding UsuarioAutenticado.Apellidos, UpdateSourceTrigger=PropertyChanged}"/>
-
+                             IsEnabled="False"/>
 
                     <TextBlock Text="Correo Electrónico" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtCorreoUs" 
@@ -73,10 +72,10 @@
                              FontFamily="Gadugi" 
                              HorizontalAlignment="Stretch"
                              BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
+                             Background="LightGray"
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
-                             Text="{Binding UsuarioAutenticado.Correo, UpdateSourceTrigger=PropertyChanged}"/>
+                             IsEnabled="False"/>
 
                     <TextBlock Text="Teléfono" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtTelefonoUs" 
@@ -85,21 +84,10 @@
                              FontFamily="Gadugi" 
                              HorizontalAlignment="Stretch"
                              BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
+                             Background="LightGray"
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
-                             Text="{Binding UsuarioAutenticado.Telefono, UpdateSourceTrigger=PropertyChanged}"/>
-
-                    <TextBlock Text="Teléfono Anterior" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="txtTelefonoAnterior" 
-                             Height="36"
-                             FontSize="16" 
-                             FontFamily="Gadugi" 
-                             HorizontalAlignment="Stretch"
-                             BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
-                             Style="{StaticResource ModernTextBox}"
-                             Margin="33,0,33,10"/>
+                             IsEnabled="False"/>
 
                     <TextBlock Text="Dirección" Margin="35,3,0,10" FontSize="16" FontFamily="Gadugi" HorizontalAlignment="Left"/>
                     <TextBox x:Name="txtDireccionUs" 
@@ -108,17 +96,17 @@
                              FontFamily="Gadugi" 
                              HorizontalAlignment="Stretch"
                              BorderThickness="2"
-                             Background="{StaticResource BackgroundBrushSecond}"
+                             Background="LightGray"
                              Style="{StaticResource ModernTextBox}"
                              Margin="33,0,33,10"
-                             Text="{Binding UsuarioAutenticado.Direccion, UpdateSourceTrigger=PropertyChanged}"/>
+                             IsEnabled="False"/>
 
                     <Grid Margin="0,15,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Button x:Name="btnEditarPerfil"
                                 Content="Editar perfil" 
                                 Grid.Column="0"
@@ -130,7 +118,7 @@
                                 Margin="35,0,80,0"
                                 Style="{StaticResource InverseButtonStyle}"
                                 Click="EditarPerfilBtn_Click"/>
-                        
+
                         <Button x:Name="btnGuardarCambios"
                                 Content="Guardar cambios"
                                 Grid.Column="0"
@@ -143,7 +131,7 @@
                                 Style="{StaticResource BaseButtonStyle}"
                                 Click="GuardarCambiosBtn_Click"
                                 Visibility="Collapsed"/>
-                        
+
                         <Button Grid.Column="1"
                                 FontSize="16" 
                                 Height="39"

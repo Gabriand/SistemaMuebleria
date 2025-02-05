@@ -13,6 +13,9 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Filtro de busqueda"
@@ -38,7 +41,9 @@
                 <Button Style="{StaticResource CategoryButtonStyle}"
                         Width="80" 
                         Height="80"
-                        Margin="0,10,10,10">
+                        Margin="0,10,10,10"
+                        Command="{Binding AplicarFiltroCommand}"
+                        CommandParameter="Silla">
                     <StackPanel>
                         <Image Source="/Recursos/Imagenes/FiltroCatalogo/Sillas.ico"
                                Width="40" 
@@ -55,7 +60,9 @@
                 <Button Style="{StaticResource CategoryButtonStyle}"
                         Width="80" 
                         Height="80"
-                        Margin="0,10,10,10">
+                        Margin="0,10,10,10"
+                        Command="{Binding AplicarFiltroCommand}"
+                        CommandParameter="Comedor">
                     <StackPanel>
                         <Image Source="/Recursos/Imagenes/FiltroCatalogo/Comedor.ico"
                                Width="40" 
@@ -71,7 +78,9 @@
 
                 <Button Style="{StaticResource CategoryButtonStyle}"
                         Width="80" 
-                        Margin="0,10,0,10">
+                        Margin="0,10,0,10"
+                        Command="{Binding AplicarFiltroCommand}"
+                        CommandParameter="Mueble">
                     <StackPanel>
                         <Image Source="/Recursos/Imagenes/FiltroCatalogo/Muebles.ico"
                                Width="40" 
@@ -139,16 +148,32 @@
                      FontFamily="Gadugi"
                      FontWeight="Regular"
                      Style="{StaticResource ModernTextBox}"
-                     Margin="0,0,7.5,0"/>
+                     Margin="0,0,7.5,0"
+                     Text="{Binding PrecioMinimo, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBox Grid.Column="1"
                      FontSize="16"
                      FontFamily="Gadugi"
                      FontWeight="Regular"
                      Style="{StaticResource ModernTextBox}"
-                     Margin="7.5,0,0,0"/>
+                     Margin="7.5,0,0,0"
+                     Text="{Binding PrecioMaximo, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </Grid>
         </StackPanel>
+        <Button Content="Buscar producto"
+                Grid.Row="3"
+                Width="140" 
+                Height="35" 
+                Margin="0, 30, 0, 0"
+                Style="{StaticResource BaseButtonStyle}" 
+                Click="BuscarProducto_Click"/>
+        <Button Content="Reiniciar busqueda"
+                Grid.Row="4"
+                Width="140" 
+                Height="35" 
+                Margin="0, 20, 0, 25"
+                Style="{StaticResource InverseButtonStyle}" 
+                Click="ReiniciarBusqueda_Click"/>
     </Grid>
 </UserControl>

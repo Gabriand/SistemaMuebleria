@@ -13,8 +13,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <!-- Barra de navegación -->
@@ -27,15 +28,39 @@
                    FontWeight="SemiBold" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"
-                   Margin="5"/>
+                   Margin="0, 10, 0, 6"/>
 
         <ScrollViewer Grid.Row="2">
             <DataGrid x:Name="dataGridListaDeseos"
-                      Margin="15"
+                      Margin="25, 10, 25, 20"
                       BorderBrush="Gray"
-                      AutoGenerateColumns="True"
+                      AutoGenerateColumns="False"
                       ItemsSource="{Binding ListaDeseos}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="0.25*"/>
+                    <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="0.35*"/>
+                    <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat='C'}" Width="0.2*"/>
+                    <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria.Nombre_Categoria}" Width="0.2*"/>
+                    <DataGridTemplateColumn Header="" Width="0.2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Eliminar" Command="{Binding DataContext.EliminarProductoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
+
+        <!--Button Grid.Row="3"
+                Content="  Generar Pedido  "
+                FontSize="16"
+                FontFamily="Gadugi"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10"
+                Style="{StaticResource InverseButtonStyle}"
+                Command="{Binding GenerarPedidoCommand}"/-->
     </Grid>
 </Page>

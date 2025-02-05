@@ -4,7 +4,10 @@ using System.Windows.Controls;
 using MySql.Data.MySqlClient;
 using MuebleriaPIS.VistaModelo;
 using MuebleriaPIS.Vistas.Catalogo;
-using MuebleriaPIS.Vistas.Ingreso; 
+using MuebleriaPIS.Vistas.Ingreso;
+using MuebleriaPIS.Vistas.GestionUsuarios;
+using MuebleriaPIS.Utilidades;
+using MuebleriaPIS.Modelos;
 
 namespace MuebleriaPIS.Vistas
 {
@@ -20,7 +23,7 @@ namespace MuebleriaPIS.Vistas
 
             _viewModel = new BarraNavegacionVistaModelo
             {
-                MostrarControlesUsuario = false, 
+                MostrarControlesUsuario = false,
             };
             barraNavegacion.DataContext = _viewModel;
 
@@ -32,19 +35,27 @@ namespace MuebleriaPIS.Vistas
             string usuario = txtUsuario.Text;
             string contrasena = txtContrasena.Password;
 
-            if ((usuario == "Admin" || usuario == "admin" || usuario == "Trabajador" || usuario == "trabajador") && contrasena == "1234")
+            if (ValidarPersonal(usuario, contrasena))
             {
                 MessageBox.Show("Bienvenido, " + usuario, "Acceso Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (usuario == "admin" || usuario == "Admin")
+                {
 
-                this.NavigationService.Navigate(new InicioTrabajador());
+                    this.NavigationService.Navigate(new InicioAdmin());
+                }
+                else
+                {
+                    this.NavigationService.Navigate(new InicioTrabajador());
+                }
             }
             else
             {
-                bool usuarioValido = ValidarCliente(usuario, contrasena);
-                if (usuarioValido)
+                int idCliente = ValidarCliente(usuario, contrasena);
+                if (idCliente > 0)
                 {
+                    Sesion.IdCliente = idCliente; // Almacenar el idCliente en la sesión
                     MessageBox.Show("Bienvenido, " + usuario, "Acceso Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.NavigationService.Navigate(new CatalogoProductos());
+                    this.NavigationService.Navigate(new CatalogoProductos()); // Navegar al catálogo de productos
                 }
                 else
                 {
@@ -53,7 +64,39 @@ namespace MuebleriaPIS.Vistas
             }
         }
 
-        private bool ValidarCliente(string usuario, string contrasena)
+        private int ValidarCliente(string usuario, string contrasena)
+        {
+            int idCliente = -1;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT Id_Cliente FROM cliente WHERE LOWER(Usuario) = LOWER(@Usuario) AND Contrasena = @Contrasena";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Usuario", usuario);
+                        cmd.Parameters.AddWithValue("@Contrasena", contrasena);
+
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            idCliente = Convert.ToInt32(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al validar el cliente: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return idCliente;
+        }
+
+        private bool ValidarPersonal(string usuario, string contrasena)
         {
             bool esValido = false;
 
@@ -62,7 +105,7 @@ namespace MuebleriaPIS.Vistas
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT COUNT(*) FROM usuario WHERE NombreUsuario = @Usuario AND Contrasena = @Contrasena";
+                    string query = "SELECT COUNT(*) FROM personal WHERE LOWER(Usuario) = LOWER(@Usuario) AND Contrasena = @Contrasena";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -79,7 +122,7 @@ namespace MuebleriaPIS.Vistas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al validar el cliente: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error al validar el personal: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return esValido;
@@ -96,3 +139,4 @@ namespace MuebleriaPIS.Vistas
         }
     }
 }
+

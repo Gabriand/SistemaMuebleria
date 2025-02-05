@@ -67,7 +67,7 @@
                                      VerticalAlignment="Center"/>
                         </StackPanel>
                         <TextBlock Grid.Row="1"
-                                 Text="{Binding ClientCount}"
+                                 Text="{Binding ClientCount, RelativeSource={RelativeSource AncestorType=Page}}"
                                  Foreground="White"
                                  FontFamily="Gadugi"
                                  FontWeight="Bold"
@@ -103,7 +103,7 @@
                                      VerticalAlignment="Center"/>
                         </StackPanel>
                         <TextBlock Grid.Row="1"
-                                 Text="{Binding OrderCount}"
+                                 Text="{Binding OrderCount, RelativeSource={RelativeSource AncestorType=Page}}"
                                  Foreground="White"
                                  FontFamily="Gadugi"
                                  FontWeight="Bold"
@@ -139,7 +139,7 @@
                                      VerticalAlignment="Center"/>
                         </StackPanel>
                         <TextBlock Grid.Row="1"
-                                 Text="{Binding ProductCount}"
+                                 Text="{Binding ProductCount, RelativeSource={RelativeSource AncestorType=Page}}"
                                  Foreground="White"
                                  FontFamily="Gadugi"
                                  FontWeight="Bold"
@@ -150,22 +150,23 @@
             </Grid>
 
             <!-- DataGrid con columnas ajustadas -->
-            <DataGrid Grid.Row="2" 
+            <DataGrid Grid.Row="2"
+                      x:Name="vgInventario"
                       Margin="15"
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" 
-                                      Binding="{Binding Id}" 
-                                      Width="0.15*"/>
                     <DataGridTextColumn Header="Nombre" 
                                       Binding="{Binding Nombre}" 
                                       Width="0.45*"/>
-                    <DataGridTextColumn Header="Cantidad" 
-                                      Binding="{Binding Cantidad}" 
-                                      Width="0.2*"/>
                     <DataGridTextColumn Header="Precio" 
                                       Binding="{Binding Precio}" 
+                                      Width="0.2*"/>
+                    <DataGridTextColumn Header="Cantidad Disponible" 
+                                        Binding="{Binding CantidadDisponible}" 
+                                        Width="0.2*"/>
+                    <DataGridTextColumn Header="Categoria" 
+                                      Binding="{Binding Categoria}" 
                                       Width="0.2*"/>
                 </DataGrid.Columns>
             </DataGrid>

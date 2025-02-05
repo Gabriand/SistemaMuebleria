@@ -1,19 +1,24 @@
-﻿using MuebleriaPIS.VistaModelo;
-using MuebleriaPIS.Vistas.GestionUsuarios;
-using MuebleriaPIS.Vistas.Inventario;
-using MuebleriaPIS.Vistas.ListaDeseo;
-using MuebleriaPIS.Vistas.Reportes;
+﻿using MuebleriaPIS.Vistas.Inventario;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace MuebleriaPIS.Vistas.Compartido
 {
-    public partial class BarraTrabajador : UserControl
+    public partial class BarraAdministrador : UserControl
     {
-        public BarraTrabajador()
+        public BarraAdministrador()
         {
             InitializeComponent();
         }
@@ -38,37 +43,37 @@ namespace MuebleriaPIS.Vistas.Compartido
             }
         }
 
-        private void Inventario_Click(object sender, RoutedEventArgs e)
+        public void GPedidosBtn_Click(object sender, RoutedEventArgs e)
         {
-            var gestionInventarioPage = new GestionInventario();
+            var gestionPedidosPage = new GestionPedidos();
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             if (navigationService != null)
             {
-                navigationService.Navigate(gestionInventarioPage);
+                navigationService.Navigate(gestionPedidosPage);
             }
         }
 
-        private void UsuariosPedidos_Click(object sender, RoutedEventArgs e)
+        public void GestionClienBtn_Click(object sender, RoutedEventArgs e)
         {
-            var pedidosPage = new Pedidos();
+            var gestionClientesPage = new GestionClientes();
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             if (navigationService != null)
             {
-                navigationService.Navigate(pedidosPage);
+                navigationService.Navigate(gestionClientesPage);
             }
         }
 
-        private void Reportes_Click(object sender, RoutedEventArgs e)
+        public void InventarioBtn_Click(object sender, RoutedEventArgs e)
         {
-            var reportesInventarioPage = new ReporteInventario();
+            var inventarioAdminPage = new InventarioAdmin();
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             if (navigationService != null)
             {
-                navigationService.Navigate(reportesInventarioPage);
+                navigationService.Navigate(inventarioAdminPage);
             }
         }
 
-        private void Salir_Click(object sender, RoutedEventArgs e)
+        public void Salir_Click(object sender, RoutedEventArgs e)
         {
             var salirPage = new IngresoPage();
             NavigationService navigationService = NavigationService.GetNavigationService(this);

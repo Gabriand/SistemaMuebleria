@@ -2,6 +2,7 @@
 using MuebleriaPIS.VistaModelo;
 using System.Windows.Navigation;
 using System;
+using MuebleriaPIS.Vistas.ListaDeseo;
 
 namespace MuebleriaPIS.Vistas.Catalogo
 {
@@ -19,8 +20,9 @@ namespace MuebleriaPIS.Vistas.Catalogo
         private void CatalogoProductos_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             _viewModel = new CatalogoProductosVistaModelo();
+            _viewModel.NavegarEvent += OnNavegar;
             this.DataContext = _viewModel;
-            filtroCatalogo.DataContext = _viewModel;
+            filtroCatalogo.DataContext = _viewModel; // Asegurarse de que el DataContext esté configurado correctamente
             barraNavegacion.VentanasGrid.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -37,5 +39,16 @@ namespace MuebleriaPIS.Vistas.Catalogo
                 gridSplitter.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
+
+        private void OnNavegar(Page page)
+        {
+            NavigationService.Navigate(page);
+        }
+
+        private void SeleccionarProductos_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SeleccionarProductos());
+        }
     }
 }
+

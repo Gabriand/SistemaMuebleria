@@ -3,6 +3,7 @@ using MuebleriaPIS.Vistas.Catalogo;
 using MuebleriaPIS.Vistas.GestionUsuarios;
 using MuebleriaPIS.Vistas.Ingreso;
 using MuebleriaPIS.Vistas.ListaDeseo;
+using MuebleriaPIS.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,8 @@ namespace MuebleriaPIS.Vistas.Compartido
 
         private void ListaDeseos_Click(object sender, MouseButtonEventArgs e)
         {
-            var detallePedidoPage = new DetallePedido();
+            string usuarioActual = ObtenerUsuarioActual();
+            var detallePedidoPage = new DetallePedido(usuarioActual);
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             if (navigationService != null)
             {
@@ -77,9 +79,19 @@ namespace MuebleriaPIS.Vistas.Compartido
             }
         }
 
+        private string ObtenerUsuarioActual()
+        {
+            // Implementa la lógica para obtener el usuario actual desde la tabla Cliente
+            var servicioClientes = new ServicioClientes();
+            var clienteActual = servicioClientes.ObtenerClienteActual();
+            return clienteActual?.Usuario;
+        }
+
+       
+
         private void PerfilUsuario_Click(object sender, MouseButtonEventArgs e)
         {
-            var detalleUsuarioPage = new DetalleUsuario();
+            var detalleUsuarioPage = new DetalleUsuario(Sesion.IdCliente); // Pasar el idCliente de la sesión
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             if (navigationService != null)
             {
