@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
 using MuebleriaPIS.Modelos;
 using MuebleriaPIS.Servicios;
-using System.ComponentModel;
-using System.Windows.Input;
 using MuebleriaPIS.Utilidades;
+using System.Windows.Navigation;
+using MuebleriaPIS.Vistas.Catalogo;
+using System.Windows.Controls;
 
 namespace MuebleriaPIS.VistaModelo
 {
     public class CatalogoProductosVistaModelo : INotifyPropertyChanged
     {
         private readonly ServicioProductos _servicioProductos;
-
+        private readonly ServicioClientes _servicioClientes;
         public ObservableCollection<Producto> Productos { get; set; }
         public ObservableCollection<Producto> ProductosFiltrados { get; set; }
         public ICommand NavegarADetalleCommand { get; }
         public ICommand AplicarFiltroCommand { get; }
+
+        public event Action<Page> NavegarEvent;
 
         private string _categoriaSeleccionada;
         public string CategoriaSeleccionada
@@ -29,7 +31,6 @@ namespace MuebleriaPIS.VistaModelo
             {
                 _categoriaSeleccionada = value;
                 OnPropertyChanged(nameof(CategoriaSeleccionada));
-                AplicarFiltro();
             }
         }
 
@@ -41,7 +42,6 @@ namespace MuebleriaPIS.VistaModelo
             {
                 _precioMinimo = value;
                 OnPropertyChanged(nameof(PrecioMinimo));
-                AplicarFiltro();
             }
         }
 
@@ -53,28 +53,33 @@ namespace MuebleriaPIS.VistaModelo
             {
                 _precioMaximo = value;
                 OnPropertyChanged(nameof(PrecioMaximo));
-                AplicarFiltro();
             }
         }
 
         public CatalogoProductosVistaModelo()
         {
             _servicioProductos = new ServicioProductos();
+            _servicioClientes = new ServicioClientes();
             var productos = _servicioProductos.ObtenerProductos();
 
             Productos = new ObservableCollection<Producto>(productos);
             ProductosFiltrados = new ObservableCollection<Producto>(Productos);
-            NavegarADetalleCommand = new RelayCommand<object>(NavegarADetalle);
-            AplicarFiltroCommand = new RelayCommand(AplicarFiltro);
+            NavegarADetalleCommand = new RelayCommand<Producto>(NavegarADetalle);
+            AplicarFiltroCommand = new RelayCommand<string>(AplicarFiltro);
         }
 
-        private void AplicarFiltro()
+        public void AplicarFiltro(string categoria = null)
         {
             var productosFiltrados = Productos.AsEnumerable();
 
+            if (!string.IsNullOrEmpty(categoria))
+            {
+                CategoriaSeleccionada = categoria;
+            }
+
             if (!string.IsNullOrEmpty(CategoriaSeleccionada))
             {
-                productosFiltrados = productosFiltrados.Where(p => p.Categoria.Id.ToString() == CategoriaSeleccionada);
+                productosFiltrados = productosFiltrados.Where(p => p.Categoria.Nombre_Categoria == CategoriaSeleccionada);
             }
 
             if (PrecioMinimo.HasValue)
@@ -91,9 +96,31 @@ namespace MuebleriaPIS.VistaModelo
             OnPropertyChanged(nameof(ProductosFiltrados));
         }
 
-        private void NavegarADetalle(object parameter)
+        private void NavegarADetalle(Producto producto)
         {
-            // Lógica para navegar a la vista de detalles del producto
+            if (producto != null)
+            {
+                // Obtener el usuario actual desde la tabla Cliente
+                string usuarioActual = ObtenerUsuarioActual();
+                var detalleProductoPage = new DetalleProductos(producto, this, usuarioActual);
+                NavegarEvent?.Invoke(detalleProductoPage);
+            }
+        }
+
+        private string ObtenerUsuarioActual()
+        {
+            // Implementa la lógica para obtener el usuario actual desde la tabla Cliente
+            var clienteActual = _servicioClientes.ObtenerClienteActual();
+            return clienteActual?.Usuario;
+        }
+
+        public void AgregarProductoALista(Producto producto)
+        {
+            if (producto != null && !Productos.Contains(producto))
+            {
+                Productos.Add(producto);
+                AplicarFiltro(); // Actualizar la lista filtrada
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

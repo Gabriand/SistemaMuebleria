@@ -1,5 +1,6 @@
 ﻿using MuebleriaPIS.Modelos;
 using MuebleriaPIS.Servicios;
+using MuebleriaPIS.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,9 +15,11 @@ namespace MuebleriaPIS.VistaModelo
     public class GestionInventarioVistaModelo : INotifyPropertyChanged
     {
         private readonly ServicioProductos _servicioProductos;
-        private Producto _productoSeleccionado;
+        private readonly ServicioStock _servicioStock;
 
         public ObservableCollection<Producto> Inventario { get; set; }
+
+        private Producto _productoSeleccionado;
         public Producto ProductoSeleccionado
         {
             get => _productoSeleccionado;
@@ -28,7 +31,8 @@ namespace MuebleriaPIS.VistaModelo
                 {
                     NombreProducto = _productoSeleccionado.Nombre;
                     PrecioProducto = _productoSeleccionado.Precio;
-                    StockProducto = _productoSeleccionado.Stock;
+                    var stock = _servicioStock.ObtenerStockPorProducto(_productoSeleccionado.Id_Producto);
+                    CantidadDisponible = stock?.CantidadDisponible ?? 0;
                 }
             }
         }
@@ -55,35 +59,34 @@ namespace MuebleriaPIS.VistaModelo
             }
         }
 
-        private int _stockProducto;
-        public int StockProducto
+        private int _cantidadDisponible;
+        public int CantidadDisponible
         {
-            get => _stockProducto;
+            get => _cantidadDisponible;
             set
             {
-                _stockProducto = value;
-                OnPropertyChanged(nameof(StockProducto));
+                _cantidadDisponible = value;
+                OnPropertyChanged(nameof(CantidadDisponible));
             }
         }
 
-        public ICommand ActualizarProductoCommand { get; }
+        public ICommand ActualizarStockCommand { get; }
 
         public GestionInventarioVistaModelo()
         {
             _servicioProductos = new ServicioProductos();
+            _servicioStock = new ServicioStock();
             Inventario = new ObservableCollection<Producto>(_servicioProductos.ObtenerProductos());
-            ActualizarProductoCommand = new RelayCommand(ActualizarProducto);
+            ActualizarStockCommand = new RelayCommand(ActualizarStock);
         }
 
-        private void ActualizarProducto()
+        private void ActualizarStock()
         {
             if (ProductoSeleccionado != null)
             {
-                ProductoSeleccionado.Nombre = NombreProducto;
-                ProductoSeleccionado.Precio = PrecioProducto;
-                ProductoSeleccionado.Stock = StockProducto;
-
-                _servicioProductos.ActualizarProducto(ProductoSeleccionado);
+                _servicioStock.ActualizarStock(ProductoSeleccionado.Id_Producto, CantidadDisponible);
+                // Actualizar la lista de productos después de la actualización del stock
+                Inventario = new ObservableCollection<Producto>(_servicioProductos.ObtenerProductos());
                 OnPropertyChanged(nameof(Inventario));
             }
         }
@@ -93,34 +96,6 @@ namespace MuebleriaPIS.VistaModelo
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public class RelayCommand : ICommand
-    {
-        private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
-
-        public RelayCommand(Action execute, Func<bool> canExecute = null)
-        {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null || _canExecute();
-        }
-
-        public void Execute(object parameter)
-        {
-            _execute();
-        }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
         }
     }
 }

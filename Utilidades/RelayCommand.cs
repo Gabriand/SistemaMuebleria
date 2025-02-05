@@ -32,6 +32,7 @@ namespace MuebleriaPIS.Utilidades
         }
     }
 
+    // Versión genérica para comandos que requieren un parámetro de tipo T
     public class RelayCommand<T> : ICommand
     {
         private readonly Action<T> _execute;
@@ -45,12 +46,34 @@ namespace MuebleriaPIS.Utilidades
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null || _canExecute((T)parameter);
+            if (parameter == null && typeof(T).IsValueType)
+            {
+                return false;
+            }
+
+            // Verifica si el parámetro puede convertirse al tipo T
+            if (parameter == null || parameter is T)
+            {
+                return _canExecute == null || _canExecute((T)parameter);
+            }
+
+            return false; // No puede ejecutarse si el tipo no es compatible
         }
 
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            if (parameter is T castParameter)
+            {
+                _execute(castParameter);
+            }
+            else if (parameter == null && typeof(T).IsValueType)
+            {
+                throw new InvalidOperationException($"El parámetro no puede ser nulo para el tipo {typeof(T).Name}");
+            }
+            else
+            {
+                throw new InvalidCastException($"No se puede convertir el parámetro de tipo {parameter?.GetType().Name} al tipo {typeof(T).Name}.");
+            }
         }
 
         public event EventHandler CanExecuteChanged
