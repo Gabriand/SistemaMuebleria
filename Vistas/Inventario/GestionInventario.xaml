@@ -1,0 +1,144 @@
+﻿<Page x:Class="MuebleriaPIS.Vistas.Inventario.GestionInventario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="900"
+      Background="{StaticResource BackgroundBrushSecond}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Recursos/Imagenes/BarraNavegacion/Regreso.ico"
+               Grid.Row="0"
+               Width="30"
+               Margin="2,0,0,0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               MouseEnter="Image_MouseEnter"
+               MouseLeave="Image_MouseLeave"
+               MouseLeftButtonUp="RegresarBtn_Click"/>
+
+        <!-- Título -->
+        <TextBlock Grid.Row="1" 
+                   Text="Gestión de Inventario" 
+                   FontSize="32" 
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Contenido Principal -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Panel para agregar/actualizar productos -->
+            <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                <Border Background="White" 
+                        CornerRadius="8" 
+                        Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Datos del Producto" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,15"/>
+
+                        <!-- ID del Producto -->
+                        <TextBlock Text="ID del Producto" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtIdProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
+
+                        <!-- Nombre -->
+                        <TextBlock Text="Nombre" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtNombreProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
+
+                        <!-- Precio -->
+                        <TextBlock Text="Precio" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtPrecioProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
+
+                        <!-- Categoría -->
+                        <TextBlock Text="Categoría" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtCategoriaProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,10"/>
+
+                        <!-- Cantidad Disponible -->
+                        <TextBlock Text="Cantidad Disponible" 
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtStockProducto" 
+                                 Height="35" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Margin="0,0,0,20"/>
+
+                        <!-- Botón de Agregar o Actualizar -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Agregar o Actualizar Producto"
+                                    Width="200" 
+                                    Height="40" 
+                                    Style="{StaticResource BaseButtonStyle}" 
+                                    Click="AgregarOActualizarProducto_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- DataGrid para mostrar inventario -->
+            <Border Grid.Column="1" 
+                    Background="White" 
+                    CornerRadius="8" 
+                    Padding="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" 
+                               Text="Inventario Actual" 
+                               FontSize="20" 
+                               FontWeight="SemiBold" 
+                               Margin="0,0,0,15"/>
+
+                    <DataGrid Grid.Row="1" 
+                              x:Name="dgInventario"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              Background="White"
+                              BorderThickness="1"
+                              BorderBrush="#EEEEEE"
+                              RowBackground="White"
+                              AlternatingRowBackground="#F5F5F5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID Producto" Binding="{Binding IdProducto}" Width="0.2*"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="0.3*"/>
+                            <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="0.2*"/>
+                            <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" Width="0.2*"/>
+                            <DataGridTextColumn Header="Fecha Ingreso" Binding="{Binding FechaIngreso}" Width="0.3*"/>
+                            <DataGridTextColumn Header="Cantidad" Binding="{Binding CantidadDisponible}" Width="0.2*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

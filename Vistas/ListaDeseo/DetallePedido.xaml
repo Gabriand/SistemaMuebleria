@@ -1,0 +1,66 @@
+﻿<Page x:Class="MuebleriaPIS.Vistas.ListaDeseo.DetallePedido"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MuebleriaPIS.Vistas.ListaDeseo"
+      xmlns:vm="clr-namespace:MuebleriaPIS.VistaModelo"
+      xmlns:compartido="clr-namespace:MuebleriaPIS.Vistas.Compartido"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="{StaticResource BackgroundBrushSecond}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <!-- Barra de navegación -->
+        <compartido:BarraNavegacion Grid.Row="0" x:Name="barraNavegacion" MostrarBotonBusqueda="False"/>
+
+        <TextBlock Text="Mi lista de deseo"
+                   Grid.Row="1"
+                   FontSize="36" 
+                   FontFamily="Gadugi" 
+                   FontWeight="SemiBold" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Margin="0, 10, 0, 6"/>
+
+        <ScrollViewer Grid.Row="2">
+            <DataGrid x:Name="dataGridListaDeseos"
+                      Margin="25, 10, 25, 20"
+                      BorderBrush="Gray"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding ListaDeseos}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="0.25*"/>
+                    <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="0.35*"/>
+                    <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat='C'}" Width="0.2*"/>
+                    <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria.Nombre_Categoria}" Width="0.2*"/>
+                    <DataGridTemplateColumn Header="" Width="0.2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Eliminar" Command="{Binding DataContext.EliminarProductoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!--Button Grid.Row="3"
+                Content="  Generar Pedido  "
+                FontSize="16"
+                FontFamily="Gadugi"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10"
+                Style="{StaticResource InverseButtonStyle}"
+                Command="{Binding GenerarPedidoCommand}"/-->
+    </Grid>
+</Page>

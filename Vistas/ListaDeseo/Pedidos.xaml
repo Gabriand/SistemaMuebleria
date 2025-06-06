@@ -1,0 +1,72 @@
+﻿<Page x:Class="MuebleriaPIS.Vistas.ListaDeseo.Pedidos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MuebleriaPIS.Vistas.ListaDeseo"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="900"
+      Background="{StaticResource BackgroundBrushSecond}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Para el botón de regreso -->
+            <RowDefinition Height="Auto"/>
+            <!-- Para el título -->
+            <RowDefinition Height="*"/>
+            <!-- Para la tabla de pedidos -->
+        </Grid.RowDefinitions>
+
+        <!-- Botón de Regreso -->
+        <Image Grid.Row="0" 
+               Source="/Recursos/Imagenes/BarraNavegacion/Regreso.ico"
+               HorizontalAlignment="Left"
+               Width="30"
+               Margin="2,0,0,10"
+               MouseEnter="Image_MouseEnter"
+               MouseLeave="Image_MouseLeave"
+               MouseLeftButtonUp="Regreso_Click"/>
+
+        <!-- Título -->
+        <TextBlock Grid.Row="1"
+                   Text="Pedidos de los usuarios"
+                   FontSize="36"
+                   FontFamily="Gadugi"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,20"/>
+
+        <!-- Tabla de Pedidos -->
+        <Border Grid.Row="2" 
+                Background="White" 
+                CornerRadius="8" 
+                Padding="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="dgPedidos"
+                         AutoGenerateColumns="False"
+                         IsReadOnly="True"
+                         Background="White"
+                         BorderThickness="1"
+                         BorderBrush="#EEEEEE"
+                         RowBackground="White"
+                         AlternatingRowBackground="#F5F5F5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id Cliente" 
+                                          Binding="{Binding IdCliente}" 
+                                          Width="0.3*"/>
+                        <DataGridTextColumn Header="Nombre" 
+                                          Binding="{Binding Nombre}" 
+                                          Width="0.3*"/>
+                        <DataGridTextColumn Header="Total de Productos" 
+                                          Binding="{Binding TotalProductos}" 
+                                          Width="0.3*"/>
+                        <DataGridTextColumn Header="Total de Precio" 
+                                          Binding="{Binding TotalPrecio}" 
+                                          Width="0.3*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Page>

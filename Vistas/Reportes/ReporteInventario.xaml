@@ -1,0 +1,63 @@
+﻿<Page x:Class="MuebleriaPIS.Vistas.Reportes.ReporteInventario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Reportes"
+      mc:Ignorable="d" 
+      Background="{StaticResource BackgroundBrushSecond}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Recursos/Imagenes/BarraNavegacion/regreso.ico"
+               Width="30"
+               Grid.Row="0"
+               Margin="2, 0, 0, 0"
+               MouseEnter="Image_MouseEnter"
+               MouseLeave="Image_MouseLeave"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               MouseLeftButtonUp="RegresoBtn_Click"/>
+        
+        <TextBlock Text="Seleccione la ruta de guardado y el nombre del archivo:"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap" 
+                   Margin="20"
+                   FontSize="13"
+                   FontFamily="Gadugi"
+                   FontWeight="SemiBold"
+                   Grid.Row="1"/>
+
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="2" 
+                    Margin="20"
+                    HorizontalAlignment="Center">
+            <TextBox x:Name="RutaTextBox" 
+                     Width="300"
+                     Style="{StaticResource ModernTextBox}"
+                     Margin="0,0,10,0"/>
+            <Button Content="  Seleccionar Ruta  " 
+                    Style="{StaticResource InverseButtonStyle}"
+                    Click="SeleccionarRuta_Click"/>
+        </StackPanel>
+
+        <Button Content="Guardar" 
+                Grid.Row="3"
+                Width="100" 
+                Height="30" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center" 
+                Margin="0,20,0,20" 
+                Style="{StaticResource InverseButtonStyle}"
+                Click="Guardar_Click"/>
+    </Grid>
+</Page>
+

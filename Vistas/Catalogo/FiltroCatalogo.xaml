@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="MuebleriaPIS.Vistas.Catalogo.FiltroCatalogo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Catalogo"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300"
+             Background="{StaticResource BackgroundBrushSecond}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Filtro de busqueda"
+                   Grid.Row="0"
+                   FontSize="23"
+                   FontWeight="SemiBold"
+                   FontFamily="Gadugi"
+                   Foreground="{StaticResource TextPrimaryBrush}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="20,0,0,0"/>
+
+        <StackPanel Grid.Row="1" Margin="20,0,20,20">
+            <TextBlock Text="Categorías"
+                       FontSize="19"
+                       FontWeight="SemiBold"
+                       FontFamily="Gadugi"
+                       Foreground="{StaticResource TextPrimaryBrush}"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,0,5"/>
+
+            <WrapPanel>
+                <Button Style="{StaticResource CategoryButtonStyle}"
+                        Width="80" 
+                        Height="80"
+                        Margin="0,10,10,10"
+                        Command="{Binding AplicarFiltroCommand}"
+                        CommandParameter="Silla">
+                    <StackPanel>
+                        <Image Source="/Recursos/Imagenes/FiltroCatalogo/Sillas.ico"
+                               Width="40" 
+                               Height="40"/>
+                        <TextBlock Text="Sillas"
+                                   FontSize="12"
+                                   FontFamily="Gadugi"
+                                   HorizontalAlignment="Center"
+                                   Foreground="Black"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource CategoryButtonStyle}"
+                        Width="80" 
+                        Height="80"
+                        Margin="0,10,10,10"
+                        Command="{Binding AplicarFiltroCommand}"
+                        CommandParameter="Comedor">
+                    <StackPanel>
+                        <Image Source="/Recursos/Imagenes/FiltroCatalogo/Comedor.ico"
+                               Width="40" 
+                               Height="40"/>
+                        <TextBlock Text="Comedor"
+                                   FontSize="12"
+                                   FontFamily="Gadugi"
+                                   HorizontalAlignment="Center"
+                                   Foreground="Black"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource CategoryButtonStyle}"
+                        Width="80" 
+                        Margin="0,10,0,10"
+                        Command="{Binding AplicarFiltroCommand}"
+                        CommandParameter="Mueble">
+                    <StackPanel>
+                        <Image Source="/Recursos/Imagenes/FiltroCatalogo/Muebles.ico"
+                               Width="40" 
+                               Height="40"/>
+                        <TextBlock Text="Muebles"
+                                   FontSize="12"
+                                   FontFamily="Gadugi"
+                                   HorizontalAlignment="Center"
+                                   Foreground="Black"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="20,0,20,0">
+            <TextBlock Text="Rango de precio"
+               FontSize="19"
+               FontWeight="SemiBold"
+               FontFamily="Gadugi"
+               Foreground="{StaticResource TextPrimaryBrush}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"/>
+
+            <Grid Margin="0,15,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Min"
+                      Grid.Column="0"
+                      FontSize="15"
+                      FontWeight="SemiBold"
+                      FontFamily="Gadugi"
+                      Foreground="{StaticResource TextPrimaryBrush}"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"/>
+
+                    <TextBlock Text="Max"
+                      Grid.Column="1"
+                      FontSize="15"
+                      FontWeight="SemiBold"
+                      FontFamily="Gadugi"
+                      Foreground="{StaticResource TextPrimaryBrush}"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Margin="15,0,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                     FontSize="16"
+                     FontFamily="Gadugi"
+                     FontWeight="Regular"
+                     Style="{StaticResource ModernTextBox}"
+                     Margin="0,0,7.5,0"
+                     Text="{Binding PrecioMinimo, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Column="1"
+                     FontSize="16"
+                     FontFamily="Gadugi"
+                     FontWeight="Regular"
+                     Style="{StaticResource ModernTextBox}"
+                     Margin="7.5,0,0,0"
+                     Text="{Binding PrecioMaximo, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+        <Button Content="Buscar producto"
+                Grid.Row="3"
+                Width="140" 
+                Height="35" 
+                Margin="0, 30, 0, 0"
+                Style="{StaticResource BaseButtonStyle}" 
+                Click="BuscarProducto_Click"/>
+        <Button Content="Reiniciar busqueda"
+                Grid.Row="4"
+                Width="140" 
+                Height="35" 
+                Margin="0, 20, 0, 25"
+                Style="{StaticResource InverseButtonStyle}" 
+                Click="ReiniciarBusqueda_Click"/>
+    </Grid>
+</UserControl>

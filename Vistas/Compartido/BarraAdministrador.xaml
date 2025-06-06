@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="MuebleriaPIS.Vistas.Compartido.BarraAdministrador"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MuebleriaPIS.Vistas.Compartido"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="120"
+             Background="{StaticResource BackgroundBrushPrimary}">
+    
+    <Border BorderBrush="LightGray" BorderThickness="0, 0, 1 ,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Recursos/Imagenes/BarraAdministrador/InventarioD.png"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0, 19, 0, 0"
+                    Width="55"
+                    MouseEnter="Image_MouseEnter"
+                    MouseLeave="Image_MouseLeave"
+                    MouseLeftButtonUp="InventarioBtn_Click"/>
+            <TextBlock Text="Inventario"
+                       TextWrapping="Wrap"
+                       FontWeight="SemiBold"
+                       FontFamily="Gadugi"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Row="1"
+                       Margin="5"
+                       MouseLeftButtonUp="InventarioBtn_Click"/>
+            
+            <Image Source="/Recursos/Imagenes/BarraAdministrador/GPedidos.png"
+                   Grid.Row="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="6, 16, 3, 0"
+                   Width="59"
+                   MouseEnter="Image_MouseEnter"
+                   MouseLeave="Image_MouseLeave"
+                   MouseLeftButtonUp="GPedidosBtn_Click"/>
+            <TextBlock Text="Gestion de pedidos"
+                       TextWrapping="Wrap"
+                       FontWeight="SemiBold"
+                       FontFamily="Gadugi"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Row="3"
+                       Margin="5"
+                       MouseLeftButtonUp="GPedidosBtn_Click"/>
+            
+            <Image Source="/Recursos/Imagenes/BarraAdministrador/GCliente.png"
+                    Grid.Row="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0, 19, 3, 0"
+                    Width="60"
+                    MouseEnter="Image_MouseEnter"
+                    MouseLeave="Image_MouseLeave"
+                    MouseLeftButtonUp="GestionClienBtn_Click"/>
+            <TextBlock Text="Gestion de Clientes"
+                       TextWrapping="Wrap"
+                       FontWeight="SemiBold"
+                       FontFamily="Gadugi"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Row="5"
+                       Margin="5"
+                       MouseLeftButtonUp="GestionClienBtn_Click"/>
+
+            <Image Source="/Recursos/Imagenes/Usuario/Salir.ico"
+               Grid.Row="6"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0, 19, 0, 0"
+               Width="35"
+               MouseEnter="Image_MouseEnter"
+               MouseLeave="Image_MouseLeave"
+               MouseLeftButtonUp="Salir_Click"/>
+            <TextBlock Text="Salir"
+                   FontWeight="SemiBold"
+                   FontFamily="Gadugi"
+                   FontSize="12"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Grid.Row="7"
+                   Margin="0,0,5,0"
+                   MouseLeftButtonUp="Salir_Click"/>
+        </Grid>
+    </Border>
+</UserControl>
